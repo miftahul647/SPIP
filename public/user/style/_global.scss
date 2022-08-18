@@ -1,0 +1,53 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: antiquewhite;
+}
+
+.page-content {
+  margin-top: 100px;
+}
+
+.btn-outline-aclc {
+  border: 1px solid #ff6d02;
+  color: #ff6d02;
+  font-weight: bold;
+
+  &:hover {
+    background: #ff6d02;
+    color: white;
+  }
+}
+
+.btn-primary-aclc {
+  background: #ff6d02;
+  color: white;
+
+  &:hover {
+    color: #fff;
+    background-color: #ff6d02;
+    border-color: none;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.sect-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.btn-primary-aclc {
+  background: #ff6d02;
+  color: #fff;
+  font-weight: bold;
+}
+
+.bg-login-image {
+  background: url("../images/pendidikan.jpg");
+  background-position: center;
+  background-size: cover;
+}

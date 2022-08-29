@@ -26,7 +26,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')
     ->group(function() {
         Route::get('/', [DashbboardController::class, 'index'])->name('admin');
-        Route::resource('anggaran', MonitorAnggaranController::class);
+        Route::prefix('monitoring')
+        ->group(function() {
+            Route::resource('anggaran', MonitorAnggaranController::class);
+        });
 });
 
 Auth::routes();

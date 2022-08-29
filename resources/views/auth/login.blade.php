@@ -16,12 +16,14 @@
                   <div class="text-center">
                     <h4 class="h4 text-gray-900 mb-4">Login Dashboard</h4>
                   </div>
-                  <form class="user">
+                  <form class="user" method="POST" action="{{ route('login') }}">
+                    @csrf
                     <div class="form-group">
                       <input
                         type="email"
                         class="form-control form-control-user"
-                        id="exampleInputEmail"
+                        id="email"
+                        name="email"
                         aria-describedby="emailHelp"
                         placeholder="Enter Email Address..."
                       />
@@ -30,7 +32,8 @@
                       <input
                         type="password"
                         class="form-control form-control-user"
-                        id="exampleInputPassword"
+                        id="email"
+                        name="password"
                         placeholder="Password"
                       />
                     </div>
@@ -46,12 +49,12 @@
                         >
                       </div>
                     </div>
-                    <a
-                      href="#"
+                    <button
+                      type="submit"
                       class="btn btn-primary-aclc btn-user"
                     >
                       Login
-                    </a>
+                    </button>
                   </form>
                   <hr />
                   <div class="text-center">

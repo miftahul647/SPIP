@@ -18,11 +18,9 @@
 
     <!-- Custom styles for this template-->
     @stack('prepend-style')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('style/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     @stack('addon-style')
+    <script src="https://kit.fontawesome.com/d30c076f76.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -45,9 +43,9 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-power-off"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -60,16 +58,24 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('admin/monitoring/*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-thin fa-desktop"></i>
                     <span>Dashboard Monitoring</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('anggaran.index') }}">Anggaran Jardik</a>
-                        <a class="collapse-item" href="#">Surat Tugas</a>
+                        <a 
+                            class="collapse-item {{ request()->is('admin/monitoring/anggaran') ? 'active' : '' }}"
+                            href="{{ route('anggaran.index') }}">
+                            Anggaran Jardik
+                        </a>
+                        <a 
+                            class="collapse-item {{ request()->is('admin/monitoring/anggaran') ? 'active' : '' }}" 
+                            href="{{ route('st.index') }}">
+                            Surat Tugas
+                        </a>
                     </div>
                 </div>
             </li>
@@ -201,11 +207,8 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a 
-                        class="btn btn-primary" 
-                        href="{{ route('logout') }}" 
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"    
-                    >
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -36,16 +36,6 @@
 
 
             @auth
-                {{-- <div class="nav-item">
-              Hi, {{ Auth::user()->name }}
-              <a class="btn btn-outline-aclc px-5 d-block" href="{{ route('logout') }}"
-                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  Logout
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-              </form>
-            </div> --}}
                 <ul class="navbar-nav d-none d-lg-flex">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown">

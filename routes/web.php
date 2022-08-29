@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
+use App\Http\Controllers\Admin\MonitorSuratTugasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::prefix('admin')
         Route::prefix('monitoring')
         ->group(function() {
             Route::resource('anggaran', MonitorAnggaranController::class);
+            Route::resource('st', MonitorSuratTugasController::class);
         });
 });
 

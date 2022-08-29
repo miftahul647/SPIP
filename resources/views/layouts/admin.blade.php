@@ -35,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin') }}>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin') }}">
                 <div class="sidebar-brand-text mx-3">
                     Admin Jardik
                 </div>
@@ -73,8 +73,6 @@
                     </div>
                 </div>
             </li>
-
-        
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -119,7 +117,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        
+
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -203,7 +201,16 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a 
+                        class="btn btn-primary" 
+                        href="{{ route('logout') }}" 
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"    
+                    >
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>

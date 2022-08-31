@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
 use App\Http\Controllers\Admin\MonitorSuratTugasController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Admin\MonitorSuratTugasController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah');
 
 Route::prefix('admin')
     ->group(function() {

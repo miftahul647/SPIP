@@ -11,13 +11,19 @@
 
             <ul class="navbar-nav ms-auto me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{ route('home') }}>Beranda</a>
+                    <a 
+                        class="nav-link {{ request()->is('/') ? 'active' : '' }}" 
+                        aria-current="page"
+                        href={{ route('home') }}>
+                        Beranda
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pendidikan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sekolah</a>
+                    <a 
+                        class="nav-link {{ request()->is('sekolah') ? 'active' : '' }}" 
+                        href="{{ route('sekolah') }}">
+                        Sekolah
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Survey</a>
@@ -39,7 +45,7 @@
                 <ul class="navbar-nav d-none d-lg-flex">
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-							Hi, {{ Auth::user()->name }}
+                            Hi, {{ Auth::user()->name }}
                             <img src="/images/icon-user.png" alt="" class="rounded-circle ms-3 profile-picture" />
                         </a>
                         <ul class="dropdown-menu">
@@ -52,10 +58,10 @@
                                 </a>
 
                             </li>
-							<li>
-								<div class="dropdown-divider"></div>
+                            <li>
+                                <div class="dropdown-divider"></div>
 
-							</li>
+                            </li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout

@@ -61,7 +61,7 @@
             <li class="nav-item {{ request()->is('admin/monitoring/*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-thin fa-desktop"></i>
+                    <i class="fas fa-fw fa-desktop"></i>
                     <span>Dashboard Monitoring</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -69,10 +69,10 @@
                         <a 
                             class="collapse-item {{ request()->is('admin/monitoring/anggaran') ? 'active' : '' }}"
                             href="{{ route('anggaran.index') }}">
-                            Anggaran Jardik
+                            Anggaran
                         </a>
                         <a 
-                            class="collapse-item {{ request()->is('admin/monitoring/anggaran') ? 'active' : '' }}" 
+                            class="collapse-item {{ request()->is('admin/monitoring/st') ? 'active' : '' }}" 
                             href="{{ route('st.index') }}">
                             Surat Tugas
                         </a>

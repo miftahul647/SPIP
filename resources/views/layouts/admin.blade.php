@@ -16,11 +16,14 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+
+
     <!-- Custom styles for this template-->
     @stack('prepend-style')
     <link href="{{ asset('style/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('style/admin/main.css') }}" rel="stylesheet">
     @stack('addon-style')
-    <script src="https://kit.fontawesome.com/d30c076f76.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
 </head>
 
@@ -45,34 +48,27 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin') }}">
-                    <i class="fas fa-fw fa-power-off"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fa-solid fa-sun"></i>
+                    <span>Welcome</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Monitor
-            </div>
+            <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ request()->is('admin/monitoring/*') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-desktop"></i>
-                    <span>Dashboard Monitoring</span>
+                    <span>Monev</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a 
-                            class="collapse-item {{ request()->is('admin/monitoring/anggaran') ? 'active' : '' }}"
+                        <a class="collapse-item {{ request()->is('admin/monitoring/anggaran') ? 'active' : '' }}"
                             href="{{ route('anggaran.index') }}">
                             Anggaran
                         </a>
-                        <a 
-                            class="collapse-item {{ request()->is('admin/monitoring/st') ? 'active' : '' }}" 
+                        <a class="collapse-item {{ request()->is('admin/monitoring/st') ? 'active' : '' }}"
                             href="{{ route('st.index') }}">
                             Surat Tugas
                         </a>
@@ -81,6 +77,14 @@
             </li>
 
             <!-- Divider -->
+            <hr class="sidebar-divider my-0 d-none d-md-block">
+
+            <li class="nav-item {{ request()->is('admin/kegiatan-internal') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('kegiatan') }}">
+                    <i class="fa-solid fa-wave-square"></i>
+                    <span>Kegiatan Internal</span></a>
+            </li>
+
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->

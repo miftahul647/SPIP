@@ -6,6 +6,7 @@ use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
 use App\Http\Controllers\Admin\MonitorSuratTugasController;
+use App\Http\Controllers\Admin\KegiatanInternalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::prefix('admin')
             Route::resource('anggaran', MonitorAnggaranController::class);
             Route::resource('st', MonitorSuratTugasController::class);
         });
+        Route::get('/kegiatan-internal', [KegiatanInternalController::class, 'index'])->name('kegiatan');
 });
 
 Auth::routes();

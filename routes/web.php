@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\KegiatanInternalController;
 |
 */
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -39,3 +40,22 @@ Route::prefix('admin')
 });
 
 Auth::routes();
+
+// VIEW DARI API JAGA SEKOLAH
+// Route::get('/jaga/sekolah/jenjang-all', function() {
+//     return 'begus ibrahim';
+// });
+
+Route::get('/jaga/sekolah/jenjang-all', [\App\Http\Controllers\sekolah\DataViewJagaSekolahJenjangAllController::class, 'index']);
+
+Route::get('/jaga/sekolah/search', [\App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController::class, 'index']);
+
+Route::get('/jaga/sekolah/npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahNpsnController::class, 'index']);
+
+Route::get('/jaga/sekolah/fasilitas/npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahFasilitasNpsnController::class, 'index']);
+
+Route::get('/jaga/sekolah/bos/years', [\App\Http\Controllers\sekolah\DataViewJagaSekolahBosYearsController::class, 'index']);
+
+Route::get('/jaga/sekolah/bos/detail', [\App\Http\Controllers\sekolah\DataViewJagaSekolahBosDetailController::class, 'index']);
+
+Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahIsianSekolahDetailByNpsnController::class, 'index']);

@@ -10926,6 +10926,8 @@ textarea.form-control-lg {
 body {
   font-family: "Poppins", sans-serif;
   background-color: antiquewhite;
+  position: relative;
+  min-height: 100vh;
 }
 
 .page-content {
@@ -11167,7 +11169,7 @@ body {
   color: #fff;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  padding: 24px 0;
+  padding: 15px 0;
 }
 .footer p {
   margin-bottom: 0;

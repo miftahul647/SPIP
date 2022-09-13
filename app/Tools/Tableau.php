@@ -46,11 +46,11 @@ class Tableau
         $ctx = stream_context_create($params);
         $fp = @fopen($url, 'rb', false, $ctx);
         // if (!$fp) {
-        //     throw new Exception("Problem with $url, $php_errormsg");
+        //     throw new Exception("Problem with $url");
         // }
         // $response = @stream_get_contents($fp);
         // if ($response === false) {
-        //     throw new Exception("Problem reading data from $url, $php_errormsg");
+        //     throw new Exception("Problem reading data from $url");
         // }
         // return $response;
     }

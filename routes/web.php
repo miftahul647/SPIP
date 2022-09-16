@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\MonitorAnggaranController;
 use App\Http\Controllers\Admin\MonitorSuratTugasController;
 use App\Http\Controllers\Admin\KegiatanInternalController;
 
+use App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +28,8 @@ use App\Http\Controllers\Admin\KegiatanInternalController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/sekolah', [SekolahController::class, 'index'])->name('sekolah');
+Route::get('/sekolah', [DataViewJagaSekolahSearchController::class, 'index'])->name('sekolah');
+Route::get('/sekolah/search', [DataViewJagaSekolahSearchController::class, 'search'])->name('search-sekolah');
 
 Route::prefix('admin')
     ->group(function() {
@@ -48,7 +51,7 @@ Auth::routes();
 
 Route::get('/jaga/sekolah/jenjang-all', [\App\Http\Controllers\sekolah\DataViewJagaSekolahJenjangAllController::class, 'index']);
 
-Route::get('/jaga/sekolah/search', [\App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController::class, 'index']);
+// Route::get('/jaga/sekolah/search', [\App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController::class, 'index']);
 
 Route::get('/jaga/sekolah/npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahNpsnController::class, 'index']);
 

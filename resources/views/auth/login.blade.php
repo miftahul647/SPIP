@@ -21,21 +21,31 @@
                     <div class="form-group">
                       <input
                         type="email"
-                        class="form-control form-control-user"
+                        class="form-control form-control-user @error('email') is-invalid @enderror"
                         id="email"
                         name="email"
                         aria-describedby="emailHelp"
                         placeholder="Enter Email Address..."
                       />
+                      @error('email')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <input
                         type="password"
-                        class="form-control form-control-user"
+                        class="form-control form-control-user @error('password') is-invalid @enderror"
                         id="email"
                         name="password"
                         placeholder="Password"
                       />
+                      @error('password')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">

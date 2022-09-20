@@ -55,12 +55,14 @@
         @foreach ($data10 as $key => $data)
           <div class="col-md-4 mb-3">
             <div class="card" style="height: 100%">
-              <img src="{{ asset('images/solid-red.jpg') }}" class="card-img-top" alt="image">
-              <div class="card-body">
-                <h5 class="card-title">{{ $data['nama'] }}</h5>
-                <P class="card-text">{{ $data['kota_kab'] }}</P>
-                <p class="card-text">{{ $data['provinsi'] }}</p>
-              </div>
+              <a href="{{ route('detail-sekolah', $data['npsn']) }}">
+                <img src="{{ asset('images/solid-red.jpg') }}" class="card-img-top" alt="image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ $data['nama'] }}</h5>
+                  <P class="card-text">{{ $data['kota_kab'] }}</P>
+                  <p class="card-text">{{ $data['provinsi'] }}</p>
+                </div>
+              </a>
             </div>
           </div>
         @endforeach

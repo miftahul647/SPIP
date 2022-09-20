@@ -8,10 +8,19 @@ use Illuminate\Support\Facades\Http;
 
 class DataViewJagaSekolahSearchController extends Controller
 {
+    protected $apiUrl;
+
+    public function __construct() 
+    {
+        $this->apiUrl = env('API_URL');
+    }
+
     public function index()
     {
-        $response = Http::get('https://bima.kpk.go.id/api/v5/sekolah/search?limit=12&offset=0&kota=tangerang selatan&jenjang=4&vnk=62087734');
-        $apiJenjang = Http::get('https://bima.kpk.go.id/api/v5/sekolah/jenjang-all');
+        $api = $this->apiUrl;
+        // dd($api);
+        $response = Http::get("{$api}/search?limit=12&offset=0&kota=tangerang selatan&jenjang=4&vnk=62087734");
+        $apiJenjang = Http::get("{$api}/jenjang-all");
 
         $resultApiJenjang = $apiJenjang->json();
         $datas = $response->json();
@@ -19,7 +28,7 @@ class DataViewJagaSekolahSearchController extends Controller
         $listJenjang = collect($resultApiJenjang['data']['result'])->take(10);
         $data10 = collect($datas['data']['result'])->take(10);
         
-        // dd($listJenjang);
+        // dd($data10);
         return view('pages.sekolah', [
             'datas' => $datas, 
             'data10' => $data10,
@@ -30,8 +39,10 @@ class DataViewJagaSekolahSearchController extends Controller
     public function search(Request $request) 
     {
        $data = $request->all();
-       $response = Http::get("https://bima.kpk.go.id/api/v5/sekolah/search?limit=12&nama={$data['nama_sekolah']}&offset=0&kota={$data['kota']}&jenjang={$data['jenjang_id']}&vnk=62087734");
-       $apiJenjang = Http::get('https://bima.kpk.go.id/api/v5/sekolah/jenjang-all');
+       $api = $this->apiUrl;
+
+       $response = Http::get("{$api}/search?limit=12&nama={$data['nama_sekolah']}&order_direction=desc&offset=0&kota={$data['kota']}&jenjang={$data['jenjang_id']}&vnk=62087734");
+       $apiJenjang = Http::get("{$api}/jenjang-all");
 
        $resultApiJenjang = $apiJenjang->json();
        $datas = $response->json();

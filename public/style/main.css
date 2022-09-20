@@ -10977,6 +10977,14 @@ body {
   background-size: cover;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: inherit;
+}
+
 .navbar-aclc {
   --bs-navbar-color: black;
   padding: 20px 0 15px 0;
@@ -11170,6 +11178,10 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   padding: 15px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
 }
 .footer p {
   margin-bottom: 0;
@@ -11200,6 +11212,45 @@ form.user .btn-user {
 }
 
 .sekolah {
+  padding: 20px 30px 20px 30px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.detail-sekolah .informasi-sekolah {
+  padding: 20px 30px 20px 30px;
+  background-color: white;
+  border-radius: 5px;
+}
+.detail-sekolah .informasi-sekolah .nama-sekolah {
+  font-size: 24px;
+  font-weight: bold;
+}
+.detail-sekolah .informasi-sekolah .kota-sekolah {
+  font-size: 20px;
+  margin-top: 16px;
+  color: #9e9e9e;
+}
+.detail-sekolah .informasi-sekolah .jalan-sekolah {
+  margin-top: 0px;
+  font-size: 14px;
+}
+.detail-sekolah .informasi-sekolah .akreditasi {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.detail-sekolah .informasi-sekolah .nilai-akreditasi {
+  background-color: #4c95b4;
+  width: 35px;
+  padding: 6px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px;
+  max-width: 50px;
+  color: #fff;
+}
+.detail-sekolah .informasi-umum {
   padding: 20px 30px 20px 30px;
   background-color: white;
   border-radius: 5px;

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-aclc">
     <div class="container">
         <a class="navbar-brand" href={{ route('home') }}>
-            <img src="images/logo_jardik.png" alt="" />
+            <img src={{ asset('images/logo_jardik.png') }} alt="" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +20,7 @@
                 </li>
                 <li class="nav-item">
                     <a 
-                        class="nav-link {{ request()->is('sekolah') ? 'active' : '' }}" 
+                        class="nav-link {{ request()->is('sekolah*') ? 'active' : '' }}" 
                         href="{{ route('sekolah') }}">
                         Sekolah
                     </a>

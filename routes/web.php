@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\MonitorSuratTugasController;
 use App\Http\Controllers\Admin\KegiatanInternalController;
 
 use App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController;
+use App\Http\Controllers\sekolah\DetailSekolahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ use App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sekolah', [DataViewJagaSekolahSearchController::class, 'index'])->name('sekolah');
 Route::get('/sekolah/search', [DataViewJagaSekolahSearchController::class, 'search'])->name('search-sekolah');
+Route::get('/sekolah/details/{id}', [DetailSekolahController::class, 'index'])->name('detail-sekolah');
 
 Route::prefix('admin')
     ->group(function() {

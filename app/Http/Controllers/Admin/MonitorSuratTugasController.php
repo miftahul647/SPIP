@@ -22,7 +22,7 @@ class MonitorSuratTugasController extends Controller
     {
         $userTableau = 'palambas';
         $serverTableau = 'statistik.kpk.go.id';
-        $view_url = 'views/Surat_Tugas_Jardik/Surat_Tugas_Jardik';
+        $view_url = 'Surat_Tugas_Jardik/Surat_Tugas_Jardik';
 
         $tableau_client = new Tableau();
         $tableau_response = $tableau_client->get_trusted_url_tableau($userTableau, $serverTableau, $view_url);

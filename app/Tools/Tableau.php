@@ -48,7 +48,7 @@ class Tableau
         // if (!$fp) {
         //     throw new Exception("Problem with $url");
         // }
-        // $response = @stream_get_contents($fp);
+        $response = @stream_get_contents($fp);
         // if ($response === false) {
         //     throw new Exception("Problem reading data from $url");
         // }

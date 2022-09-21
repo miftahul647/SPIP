@@ -52,7 +52,7 @@ class Tableau
         // if ($response === false) {
         //     throw new Exception("Problem reading data from $url");
         // }
-        // return $response;
+         return $response;
     }
 
 }

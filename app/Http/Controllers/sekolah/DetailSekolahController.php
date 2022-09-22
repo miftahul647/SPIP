@@ -8,20 +8,57 @@ use Illuminate\Support\Facades\Http;
 
 class DetailSekolahController extends Controller
 {
+    protected $apiUrl;
+
+    public function __construct() 
+    {
+        $this->apiUrl = env('API_URL');
+    }
+    
     public function index(Request $request, $id)
     {   
-        $response = Http::get("https://bima.kpk.go.id/api/v5/sekolah?npsn={$id}");
-        $data = $response->json();
-        $result = $data['data']['result'];
+        $api = $this->apiUrl;
+        $response = Http::get("{$api}?npsn={$id}");
+        $data = $response->json(['data']);
+        $result = $data['result'][0];
+        $provinsi = $result['provinsi'];
+        $sliceProv = substr($provinsi, 6);
 
-        $responseFasilitas = Http::get("https://bima.kpk.go.id/api/v5/sekolah/fasilitas?npsn={$id}");
+        $responseFasilitas = Http::get("{$api}/fasilitas?npsn={$id}");
         $dataFasilitas = $responseFasilitas->json(['data']);
-        $jmlPd = $dataFasilitas['result'][0]['jml_pd'];
+        $getData = $dataFasilitas['result'][0];
 
-        // dd($resultFasilitas);
+        $jmlPd = $getData['jml_pd'];
+        $totalGuru = $getData['jml_guru'];
+        $countRasio = $jmlPd / $totalGuru;
+        $rasio = round($countRasio);
+
+        $rekapProfesiGuru = $result['guru_gty'] + $result['guru_pns'] + $result['guru_gtt'] + $result['guru_honor'];
+
+        $teachers = [
+            'GTY/PTY' => $result['guru_gty'],
+            'PNS' => $result['guru_pns'],
+            'GTT' => $result['guru_gtt'],
+            'Guru Honorer' => $result['guru_honor'],
+        ];
+
+        $facilities = [
+            'Perpustakaan' => $result['jml_perpus'],
+            'Ruang Kelas' => $result['jml_rk'],
+            'Laboratorium Bahasa' => $result['lab_bahasa'],
+            'Laboratorium Ipa' => $result['lab_ipa'],
+        ];
+
+        // dd($facilities);
         return view('pages.detail-sekolah', [
             'result' => $result,
-            'jmlPd' => $jmlPd
+            'jmlPd' => $jmlPd,
+            'sliceProv' => $sliceProv,
+            'totalGuru' => $totalGuru,
+            'rasio' => $rasio,
+            'rekapProfesi' => $rekapProfesiGuru,
+            'teachers' => $teachers,
+            'facilities' => $facilities,
         ]);
     }
 }

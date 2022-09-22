@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-xl-12 col-md-6">
             <div class="frame-responsive">
-                <iframe id="idx_frame" src={{ $tableau_response }} scrolling="no" frameborder="0" style="height: 10px; overflow: hidden;">
+                <iframe id="idx_frame" src={{ $tableau_response }} scrolling="no" frameborder="0" style="height: 100%; overflow: hidden;">
                 </iframe>
             </div>
         </div>

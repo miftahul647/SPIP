@@ -14,9 +14,15 @@
     <div class="row">
 
         <div class="col-xl-12 col-md-12 col-sm-12">
-            <div class="frame-responsive">
-                <iframe id="idx_frame" src="https://www.appsheet.com/start/1fdcfcc4-efd8-47eb-aaf6-bf0b0a5ee84c" width="1400"
-                    height="2000" frameborder="0">
+            <div class="frame-responsive" style="padding-bottom:56.25%; position:relative; display:block; width: 100%">
+                <iframe
+                    width="100%" 
+                    height="100%"
+                    id="idx_frame"
+                    src="https://www.appsheet.com/start/1fdcfcc4-efd8-47eb-aaf6-bf0b0a5ee84c" 
+                    frameborder="0"
+                    style="position:absolute; top:0; left: 0"
+                    >
                 </iframe>
             </div>
         </div>

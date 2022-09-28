@@ -5,6 +5,8 @@ namespace App\Http\Controllers\sekolah;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Tools\FilterArray;
+
 
 class DetailSekolahController extends Controller
 {
@@ -41,15 +43,22 @@ class DetailSekolahController extends Controller
             'GTT' => $result['guru_gtt'],
             'Guru Honorer' => $result['guru_honor'],
         ];
-
+        
         $facilities = [
             'Perpustakaan' => $result['jml_perpus'],
             'Ruang Kelas' => $result['jml_rk'],
             'Laboratorium Bahasa' => $result['lab_bahasa'],
+            'Laboratorium Biologi' => $result['lab_biologi'],
+            'Laboratorium Fisika' => $result['lab_fisika'],
             'Laboratorium Ipa' => $result['lab_ipa'],
+            'Laboratorium Ips' => $result['lab_ips'],
+            'Laboratorium Kimia' => $result['lab_kimia'],
         ];
-
-        // dd($facilities);
+        
+        $filterArray = new FilterArray();
+        $filterFacilities = $filterArray->get_filter_array($facilities);
+        
+        // dd($filterFacilities);
         return view('pages.detail-sekolah', [
             'result' => $result,
             'jmlPd' => $jmlPd,
@@ -58,7 +67,7 @@ class DetailSekolahController extends Controller
             'rasio' => $rasio,
             'rekapProfesi' => $rekapProfesiGuru,
             'teachers' => $teachers,
-            'facilities' => $facilities,
+            'facilities' => $filterFacilities,
         ]);
     }
 }

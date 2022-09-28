@@ -56,6 +56,9 @@
           <div class="col-md-4 mb-3">
             <div class="card" style="height: 100%">
               <a href="{{ route('detail-sekolah', $data['npsn']) }}">
+                @if ($data['is_pak'])
+                  <img src="{{ asset('images/pendidikan-ispak.png') }}" alt="" style="position: absolute;">                  
+                @endif
                 <img src="{{ asset('images/solid-red.jpg') }}" class="card-img-top" alt="image">
                 <div class="card-body">
                   <h5 class="card-title">{{ $data['nama'] }}</h5>

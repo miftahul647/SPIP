@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
 use App\Http\Controllers\Admin\MonitorSuratTugasController;
 use App\Http\Controllers\Admin\KegiatanInternalController;
+use App\Http\Controllers\Admin\ManagementJejaringController;
 
 use App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController;
 use App\Http\Controllers\sekolah\DetailSekolahController;
@@ -42,6 +43,7 @@ Route::prefix('admin')
             Route::resource('st', MonitorSuratTugasController::class);
         });
         Route::get('/kegiatan-internal', [KegiatanInternalController::class, 'index'])->name('kegiatan');
+        Route::get('/management-jejaring', [ManagementJejaringController::class, 'index'])->name('jejaring');
 });
 
 Auth::routes();

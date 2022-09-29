@@ -85,6 +85,14 @@
                     <span>Kegiatan Internal</span></a>
             </li>
 
+            <hr class="sidebar-divider my-0 d-none d-md-block">
+
+            <li class="nav-item {{ request()->is('admin/management-jejaring') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('jejaring') }}">
+                    <i class="fa-solid fa-database mx-1"></i>
+                    <span>Data Jejaring</span></a>
+            </li>
+
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Tools\Tableau;
 
 class MonitorAnggaranController extends Controller
 {
@@ -20,7 +21,16 @@ class MonitorAnggaranController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.monitoring.anggaran-jardik');
+        $userTableau = 'palambas';
+        $serverTableau = 'statistik.kpk.go.id';
+        $view_url = 'DashboardKegiatandanAnggaranJardikversi2_0/Rekapitulasi_proyek_anggaran_realisasi_jardik';
+
+        $tableau_client = new Tableau();
+        $tableau_response = $tableau_client->get_trusted_url_tableau($userTableau, $serverTableau, $view_url);
+
+        return view('pages.admin.monitoring.anggaran-jardik', [
+            'tableau_response' => $tableau_response
+        ]);
     }
 
     /**

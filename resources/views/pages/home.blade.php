@@ -12,16 +12,17 @@
 				<div class="container">
 					<div class="row slider-text align-items-center">
 							<div class="col-md-6">
-									<h1 class="title">Diklat Penyuluh Anti Korupsi</h1>
+									<h1 class="title">KOTAK KEJUJURAN DI SDN 2 MERAK BELANTUNG</h1>
 									<h6 class="description">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.
-											Laudantium, vel ducimus aut ratione et harum voluptatibus eum,
+										Penanaman nilai-nilai Pendidikan Anti Korupsi dapat ditanamkan melalui pembiasaan(habituasi) dalam seluruh aktivitas di sekolah. Berdasarkan pembiasaan tersebut, diharapkan siswa dapat terbiasa dengan penuh kesadaran menurut dan taat kepada aturan-aturan yang berlaku di sekolah dan masyarakat tanpa adanya paksaan. 
 									</h6>
 
-									<a href="" class="btn btn-primary-aclc">Selengkapnya</a>
+									{{-- <a href="" class="btn btn-primary-aclc">Selengkapnya</a> --}}
 							</div>
 							<div class="col-md-6">
-									<img src="images/bg3.jpg" class="d-none d-sm-none d-md-block" alt="" />
+								<div class="ratio ratio-16x9">
+									<iframe src="https://www.youtube.com/embed/5n01H8C6k1I" title="YouTube video" allowfullscreen></iframe>
+								</div>
 							</div>
 					</div>
 				</div>
@@ -34,17 +35,18 @@
 								<div class="row slider-text align-items-center">
 										<div class="col-md-6">
 												<h1 class="title">
-														Paksi Bengkulu Sebarkan Semangat Antikorupsi di Panti Asuhan
+													KEGIATAN HARI KELUARGA DAN HARI BERSIH INDONESIA (HBI)
 												</h1>
 												<h6 class="description">
-														Lorem ipsum dolor sit amet consectetur adipisicing elit.
-														Laudantium, vel ducimus aut ratione et harum voluptatibus eum,
+													KEGIATAN HARI KELUARGA ini di selenggarakan bersamaan dengan (HBI) Hari Bersih Indonesia.Kegiatan ini bertujuan untuk mempererat hubungan antara anak dan orang tua, menumbuhkan rasa memiliki Tanggung Jawab,  Kerjasama dan Kepedulian,  di antara sesama anggota keluarga
 												</h6>
 
-												<a href="" class="btn btn-primary-aclc">Selengkapnya</a>
+												{{-- <a href="" class="btn btn-primary-aclc">Selengkapnya</a> --}}
 										</div>
 										<div class="col-md-6 col-md-6 col-sm-12">
-												<img src="images/bg2.jpg" class="d-none d-sm-none d-md-block" alt="" />
+											<div class="ratio ratio-16x9">
+												<iframe src="https://www.youtube.com/embed/QYtHv_Fu5OM" title="YouTube video" allowfullscreen></iframe>
+											</div>
 										</div>
 								</div>
 						</div>
@@ -56,16 +58,17 @@
 						<div class="container">
 								<div class="row slider-text align-items-center">
 										<div class="col-md-6">
-												<h1 class="title">Diklat Penyuluh Anti Korupsi</h1>
+												<h1 class="title">Kantin Kejujuran</h1>
 												<h6 class="description">
-														Lorem ipsum dolor sit amet consectetur adipisicing elit.
-														Laudantium, vel ducimus aut ratione et harum voluptatibus eum,
+													Pelaksanaan kantin kejujuran di SD N 1 Penatih untuk menerapkan pendidikan antikorupsi  pada kantin kejujuran disediakan bermacam makanan dan snack siswa berbelanja dengan mengambil dan menghitung barang yang diambil serta menaruh sejumlah uang pada kotak uang, bila ada kembalian siswa mengambil kembalian sendiri.
 												</h6>
 
-												<a href="" class="btn btn-primary-aclc">Selengkapnya</a>
+												{{-- <a href="" class="btn btn-primary-aclc">Selengkapnya</a> --}}
 										</div>
 										<div class="col-md-6">
-												<img src="images/bg3.jpg" class="d-none d-sm-none d-md-block" alt="" />
+											<div class="ratio ratio-16x9">
+												<iframe src="https://www.youtube.com/embed/GryUOgenR-Q" title="YouTube video" allowfullscreen></iframe>
+											</div>
 										</div>
 								</div>
 						</div>

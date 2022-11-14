@@ -1,3 +1,8 @@
+## Dokumentasi API Jardik
+- Testing : https://www.postman.com/api-kpk/workspace/api-kpk/request/9243781-9755ff3c-8435-4ea8-b3bf-9611bc3f59d1
+
+- Reading : https://www.postman.com/api-kpk/workspace/api-kpk/documentation/9243781-60551ae1-16b0-41b6-8bee-78ec60bf1475?entity=&branch=&version=
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

@@ -46,16 +46,16 @@ Auth::routes();
 //     return 'begus ibrahim';
 // });
 
-Route::get('/jaga/sekolah/jenjang-all', [\App\Http\Controllers\sekolah\DataViewJagaSekolahJenjangAllController::class, 'index']);
+Route::get('/jaga/sekolah/jenjang-all', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahJenjangAllController::class, 'index']);
 
-Route::get('/jaga/sekolah/search', [\App\Http\Controllers\sekolah\DataViewJagaSekolahSearchController::class, 'index']);
+Route::get('/jaga/sekolah/search', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahSearchController::class, 'index']);
 
-Route::get('/jaga/sekolah/npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahNpsnController::class, 'index']);
+Route::get('/jaga/sekolah/npsn', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahNpsnController::class, 'index']);
 
-Route::get('/jaga/sekolah/fasilitas/npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahFasilitasNpsnController::class, 'index']);
+Route::get('/jaga/sekolah/fasilitas/npsn', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahFasilitasNpsnController::class, 'index']);
 
-Route::get('/jaga/sekolah/bos/years', [\App\Http\Controllers\sekolah\DataViewJagaSekolahBosYearsController::class, 'index']);
+Route::get('/jaga/sekolah/bos/years', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahBosYearsController::class, 'index']);
 
-Route::get('/jaga/sekolah/bos/detail', [\App\Http\Controllers\sekolah\DataViewJagaSekolahBosDetailController::class, 'index']);
+Route::get('/jaga/sekolah/bos/detail', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahBosDetailController::class, 'index']);
 
-Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\sekolah\DataViewJagaSekolahIsianSekolahDetailByNpsnController::class, 'index']);
+Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\Sekolah\DataViewJagaSekolahIsianSekolahDetailByNpsnController::class, 'index']);

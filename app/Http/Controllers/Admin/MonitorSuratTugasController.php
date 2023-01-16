@@ -20,8 +20,8 @@ class MonitorSuratTugasController extends Controller
      */
     public function index()
     {
-        $userTableau = 'palambas';
-        $serverTableau = 'statistik.kpk.go.id';
+        $userTableau = 'webviewer';
+        $serverTableau = 'new-merdeka.kpk.go.id';
         $view_url = 'Surat_Tugas_Jardik/D_surat_tugas_jardik';
 
         $tableau_client = new Tableau();

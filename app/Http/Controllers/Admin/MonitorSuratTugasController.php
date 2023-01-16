@@ -22,7 +22,7 @@ class MonitorSuratTugasController extends Controller
     {
         $userTableau = 'webviewer';
         $serverTableau = 'new-merdeka.kpk.go.id';
-        $view_url = 'Surat_Tugas_Jardik/D_surat_tugas_jardik';
+        $view_url = 'LHKPN_Pendaftaran_ImplementasiELHKPN/Implementasie-LHKPN';
 
         $tableau_client = new Tableau();
         $tableau_response = $tableau_client->get_trusted_url_tableau($userTableau, $serverTableau, $view_url);

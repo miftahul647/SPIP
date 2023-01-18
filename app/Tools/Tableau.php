@@ -12,7 +12,7 @@ class Tableau
             $ticket = self::get_trusted_ticket_tableau($serverTableau, $userTableau, $_SERVER['REMOTE_ADDR'], $view_url);
             
             if ($ticket != '-1') {
-                return "http://$serverTableau/trusted/$ticket/$view_url?$params";
+                return "http://$serverTableau/trusted/$ticket/views/$view_url?$params";
             } 
 
             return 'tableau failed to load. ticket != -1.';

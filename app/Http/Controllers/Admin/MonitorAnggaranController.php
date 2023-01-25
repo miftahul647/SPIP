@@ -21,7 +21,7 @@ class MonitorAnggaranController extends Controller
      */
     public function index()
     {
-        $userTableau = 'palambas';
+        $userTableau = 'webviewer';
         $serverTableau = 'statistik.kpk.go.id';
         $view_url = 'DashboardKegiatandanAnggaranJardikversi2_0/Rekapitulasi_proyek_anggaran_realisasi_jardik';
 

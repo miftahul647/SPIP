@@ -12,7 +12,7 @@ class Tableau
             $ticket = self::get_trusted_ticket_tableau($serverTableau, $userTableau, $_SERVER['REMOTE_ADDR'], $view_url);
             
             if ($ticket != '-1') {
-                return "http://$serverTableau/trusted/$ticket/views/$view_url?$params";
+                return "https://$serverTableau/trusted/$ticket/views/$view_url?$params";
             } 
 
             return 'tableau failed to load. ticket != -1.';
@@ -39,7 +39,7 @@ class Tableau
             'client_ip' => $remote_addr,
             'target_site' => $site_id
         );
-        return self::do_post_request_tableau("http://$wgserver/trusted", $params);
+        return self::do_post_request_tableau("https://$wgserver/trusted", $params);
     }
 
 

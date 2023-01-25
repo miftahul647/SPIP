@@ -20,16 +20,12 @@ class MonitorSuratTugasController extends Controller
      */
     public function index()
     {
-        $userTableau = 'webviewer';
-        $serverTableau = 'new-merdeka.kpk.go.id';
-        $view_url = 'LHKPN_Pendaftaran_ImplementasiELHKPN/Implementasie-LHKPN';
+        $userTableau = 'palambas';
+        $serverTableau = 'statistik.kpk.go.id';
+        $view_url = 'Surat_Tugas_Jardik/D_surat_tugas_jardik';
 
         $tableau_client = new Tableau();
         $tableau_response = $tableau_client->get_trusted_url_tableau($userTableau, $serverTableau, $view_url);
-
-        // echo '<iframe id="idx_frame" src="'.$tableau_response.'"
-        //     width="1024" height="1200"  frameborder="0" style="position:relative;">
-        // </iframe>';
         
         return view('pages.admin.monitoring.surat-tugas', [
             'tableau_response' => $tableau_response

@@ -5,7 +5,12 @@
 @import "fonts";
 @import "navbar";
 
+// Components
+@import "components/hero";
+
+// Pages
 @import "pages/home";
 @import "pages/login";
 @import "pages/sekolah";
+@import "pages/dashboard";
 @import "pages/detail-sekolah";

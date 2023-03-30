@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
 use App\Http\Controllers\Admin\MonitorSuratTugasController;
@@ -33,6 +34,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/sekolah', [DataViewJagaSekolahSearchController::class, 'index'])->name('sekolah');
 Route::get('/sekolah/search', [DataViewJagaSekolahSearchController::class, 'search'])->name('search-sekolah');
 Route::get('/sekolah/details/{id}', [DetailSekolahController::class, 'index'])->name('detail-sekolah');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('portal-dashboard');
+
 
 Route::prefix('admin')
     ->group(function() {

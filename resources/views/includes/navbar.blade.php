@@ -11,25 +11,24 @@
 
             <ul class="navbar-nav ms-auto me-auto">
                 <li class="nav-item">
-                    <a 
-                        class="nav-link {{ request()->is('/') ? 'active' : '' }}" 
-                        aria-current="page"
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"
                         href={{ route('home') }}>
                         Beranda
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a 
-                        class="nav-link {{ request()->is('sekolah*') ? 'active' : '' }}" 
-                        href="{{ route('sekolah') }}">
+                    <a class="nav-link {{ request()->is('sekolah*') ? 'active' : '' }}" href="{{ route('sekolah') }}">
                         Sekolah
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Survey</a>
+                    <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}"
+                        href="{{ route('portal-dashboard') }}">
+                        Dashboard
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang</a>
+                    <a class="nav-link" href="#">Survey</a>
                 </li>
             </ul>
             @guest

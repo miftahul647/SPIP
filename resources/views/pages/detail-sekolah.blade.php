@@ -6,8 +6,13 @@
 
 @section('content')
     <!-- Section Detail -->
+    @component('components.title')
+      @slot('title')
+        Detail satuan pendidikan
+      @endslot
+  @endcomponent
     <div class="container mt-5 detail-sekolah">
-      <div class="sekolah informasi-box mb-4">
+      <div class="sekolah border border-dark-subtle informasi-box mb-4">
         <div class="row">   
               <div class="col-md-6">
                   <div class="nama-sekolah">
@@ -31,7 +36,7 @@
         </div>
       </div>
 
-      <div class="infor-umum informasi-box mb-4">
+      <div class="infor-umum border border-dark-subtle informasi-box mb-4">
         <div class="title">
             Informasi Umum
         </div>
@@ -65,7 +70,7 @@
         </div>
       </div>
 
-      <div class="info-guru informasi-box mb-4">
+      <div class="info-guru border border-dark-subtle informasi-box mb-4">
         <div class="title">Informasi Guru dan Tenaga Pendidikan</div>
         <div class="sub-title">
           Rekapitulasi Status Profesi Guru (Total: {{ $rekapProfesi }} orang)
@@ -92,7 +97,7 @@
         </div>
       </div>
 
-      <div class="info-fasilitas informasi-box mb-4">
+      <div class="info-fasilitas border border-dark-subtle informasi-box mb-4">
         <div class="title">Informasi Fasilitas</div>
         <div class="list mt-4">
           <div class="row">

@@ -6,8 +6,17 @@
 
 @section('content')
   <!-- Section sekolah -->
+  @component('components.title')
+      @slot('title')
+        Kumpulan satuan pendidikan
+      @endslot
+      <h6>
+        Informasi dan penyajian profile satuan pendidikan
+      </h6>
+  @endcomponent
+
   <div class="container mt-5">
-    <div class="sekolah px-5">
+    <div class="sekolah border border-dark-subtle px-5">
       <div class="row">
         <div class="col-lg-12 mb-3">
           <h3 class="text-center">Cari Sekolah</h3>
@@ -50,9 +59,31 @@
   </div>
 
   <div class="container mt-5 mb-5">
-    <div class="sekolah p-5">
+    <div class="sekolah border border-dark-subtle p-5">
       <div class="row">
-        @foreach ($data10 as $key => $data)
+        <table class="table table-bordered">
+          <thead>
+            <th>Sekolah</th>
+            <th>Kota</th>
+            <th>Prov</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            @foreach ($data10 as $key => $data)
+              <tr>
+                <td>{{ $data['nama'] }}</td>
+                <td>{{ $data['kota_kab'] }}</td>
+                <td>{{ $data['provinsi'] }}</td>
+                <td>
+                  <a href="{{ route('detail-sekolah', $data['npsn']) }}">
+                    Detail
+                  </a>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+        {{-- @foreach ($data10 as $key => $data)
           <div class="col-md-4 mb-3">
             <div class="card" style="height: 100%">
               <a href="{{ route('detail-sekolah', $data['npsn']) }}">
@@ -68,7 +99,7 @@
               </a>
             </div>
           </div>
-        @endforeach
+        @endforeach --}}
       </div>
     </div>
   </div>

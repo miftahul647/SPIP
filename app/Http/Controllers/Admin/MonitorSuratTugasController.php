@@ -27,7 +27,7 @@ class MonitorSuratTugasController extends Controller
         $tableau_client = new Tableau();
         $tableau_response = $tableau_client->get_trusted_url_tableau($userTableau, $serverTableau, $view_url);
         
-        return view('pages.admin.monitoring.surat-tugas', [
+        return view('pages.admin.monitoring.anggaran-jardik', [
             'tableau_response' => $tableau_response
         ]);
     }

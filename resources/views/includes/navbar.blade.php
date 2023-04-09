@@ -28,7 +28,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Survey</a>
+                    <a class="nav-link" 
+                        href="{{ route('collect-data') }}">
+                        Survey
+                    </a>
                 </li>
             </ul>
             @guest

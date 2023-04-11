@@ -14,7 +14,18 @@
         Form Data satuan pendidikan
       </h6>
   @endcomponent
-
+  
+  <div class="dashboard-page-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h4 class="title">
+            Silahkan unduh dan lengkapi file berikut sesuai jenjang pendidikan
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
   
   
       

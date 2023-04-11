@@ -36,7 +36,7 @@ Route::get('/sekolah', [DataViewJagaSekolahSearchController::class, 'index'])->n
 Route::get('/sekolah/search', [DataViewJagaSekolahSearchController::class, 'search'])->name('search-sekolah');
 Route::get('/sekolah/details/{id}', [DetailSekolahController::class, 'index'])->name('detail-sekolah');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('portal-dashboard');
-Route::get('/collect-data', [CollectionDataSatdik::class, 'index'])->name('collect-data');
+Route::get('/survey', [CollectionDataSatdik::class, 'index'])->name('collect-data');
 
 
 Route::prefix('admin')

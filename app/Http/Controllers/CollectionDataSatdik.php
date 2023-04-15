@@ -16,6 +16,19 @@ class CollectionDataSatdik extends Controller
         return view('pages.collect-data-satdik');
     }
 
+    public function downloadTemplatePopulasiSekolah() 
+    {
+        
+        $file = public_path("storage/downloads/Template-Data-Populasi-Sekolah-2023.xlsx");
+        return response()->download($file);
+    }
+
+    public function downloadTemplatePT()
+    {
+        $filePath = public_path("storage/downloads/Template-Data-Populasi-PT-2023.xlsx");
+        return response()->download($filePath);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

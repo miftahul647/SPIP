@@ -38,6 +38,8 @@ Route::get('/sekolah/details/{id}', [DetailSekolahController::class, 'index'])->
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('portal-dashboard');
 Route::get('/survey', [CollectionDataSatdik::class, 'index'])->name('collect-data');
 
+Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePopulasiSekolah'])->name('download-template-sekolah');
+Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');
 
 Route::prefix('admin')
     ->group(function() {

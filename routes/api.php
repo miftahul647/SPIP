@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,8 @@ Route::get('/jaga/sekolah/bos/detail', [\App\Http\Controllers\sekolah\DataApiJag
 Route::get('/jaga/sekolah/bos/detail/komponen/penggunaan', [\App\Http\Controllers\sekolah\DataApiJagaSekolahBosDetailKomponenPenggunaanController::class, 'index']);
 
 Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\sekolah\DataApiJagaSekolahIsianSekolahDetailByNpsnController::class, 'index']);
+
+//API REGION
+Route::get('provinces', [LocationController::class, 'provinces'])->name('api-provinces');
+Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
+Route::get('schools/{regencies_id}', [LocationController::class, 'schools'])->name('api-schools');

@@ -49,48 +49,37 @@
               <option value="sd">SD</option>
               <option value="smp">SMP</option>
               <option value="SMA">SMA</option>
+              <option value="PT">PERGURUAN TINGGI</option>
             </select>
           </div>
-          <div class="col-6 mt-3">
+          {{-- <div class="col-6 mt-3">
             <label for="selectWilayah" class="form-label">Wilayah</label>
             <select class="form-select" name="wilayah" id="selectJenjang">
               <option selected>Pilih Wilayah</option>
               <option value="dalam_negeri">Dalam Negeri</option>
               <option value="luar_negeri">Luar Negeri</option>
             </select>
+          </div> --}}
+          <div class="col-6 mt-3">
+            <label for="provinces_id" class="form-label">Provinsi</label>
+            <select class="form-select" id="provinces_id" name="provinces_id" v-if="provinces" v-model="provinces_id">
+              <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+            </select>
+            <select v-else class="form-select"></select>
           </div>
           <div class="col-6 mt-3">
-            <label for="selectProvinsi" class="form-label">Provinsi</label>
-            <select class="form-select" name="provinsi" id="selectProvinsi">
-              <option selected>Pilih Provinsi</option>
-              <option value="banten">Banten</option>
-              <option value="jabar">Jawa Barat</option>
-              <option value="jateng">Jawa Tengah</option>
+            <label for="regencies_id" class="form-label">Kabupaten/Kota</label>
+            <select class="form-select" name="regencies_id" id="regencies_id" v-if="regencies" v-model="regencies_id">
+              <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
             </select>
+            <select v-else class="form-select"></select>
           </div>
           <div class="col-6 mt-3">
-            <label for="selectKabupaten" class="form-label">Kabupaten/Kota</label>
-            <select class="form-select" name="kabupaten" id="selectKabupaten">
-              <option selected>Pilih Kabupaten</option>
-              <option value="tangerang">Tangerang</option>
-              <option value="lebak">Lebak</option>
-              <option value="cilegon">Cilegon</option>
-              <option value="bandung">Bandung</option>
-              <option value="bekasi">Bekasi</option>
-              <option value="bogor">Bogor</option>
-              <option value="semarang">Semarang</option>
-              <option value="batang">Batang</option>
-              <option value="banyumas">Banyumas</option>
+            <label for="schools_id" class="form-label">Satuan Pendidikan</label>
+            <select class="form-select" name="schools_id" id="schools_id" v-if="schools" v-model="schools_id">
+              <option v-for="school in schools" :value="school.id">@{{ school.nama_sekolah }}</option>
             </select>
-          </div>
-          <div class="col-6 mt-3">
-            <label for="selectSatdik" class="form-label">Satuan Pendidikan</label>
-            <select class="form-select" name="satdik" id="selectSatdik">
-              <option selected>Pilih Satuan Pendidikan</option>
-              <option value="20603040-sd_negeri_pajajaran">20603040 - sd negeri pajajaran</option>
-              <option value="20603040-sd_negeri_pajajaran">20603040 - sd negeri pajajaran</option>
-              <option value="20603040-sd_negeri_pajajaran">20603040 - sd negeri pajajaran</option>
-            </select>
+            <select v-else class="form-select"></select>
           </div>
           <div class="col-6 mt-3">
             <label for="npsn" class="form-label">NPSN</label>
@@ -122,7 +111,7 @@
   </div>
   
   @push('addon-script')
-    <script src="/vendor/vue/vue.js"></script>
+    <script src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       var locations = new Vue({
@@ -131,12 +120,13 @@
           this.getProvincesData();
         },
         data: {
+          jenjang: null,
           provinces: null,
           regencies: null,
           schools: null,
           provinces_id: null,
           regencies_id: null,
-          school_id: null
+          schools_id: null
         },
         methods: {
           getProvincesData() {
@@ -145,8 +135,32 @@
               .then(function (response) {
                   self.provinces = response.data;
               })
+          },
+          getRegenciesData() {
+            var self = this;
+            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+              .then(function (response) {
+                self.regencies = response.data;
+            })
+          },
+          getSchoolsData() {
+            var self = this;
+            axios.get('{{ url('api/schools') }}/' + self.regencies_id)
+              .then(function (response) {
+                self.schools = response.data;
+            })
           }
         },
+        watch: {
+          provinces_id: function(val, oldVal) {
+            this.regencies_id = null;
+            this.getRegenciesData();
+          },
+          regencies_id: function(val, oldVal) {
+            this.schools_id = null;
+            this.getSchoolsData();
+          }
+        }
       })
     </script>
   @endpush

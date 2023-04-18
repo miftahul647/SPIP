@@ -19,13 +19,13 @@ class CollectionDataSatdik extends Controller
     public function downloadTemplatePopulasiSekolah() 
     {
         
-        $file = public_path("storage/downloads/Template-Data-Populasi-Sekolah-2023.xlsx");
+        $file = public_path("file/downloads/Template-Data-Populasi-Sekolah-2023.xlsx");
         return response()->download($file);
     }
 
     public function downloadTemplatePT()
     {
-        $filePath = public_path("storage/downloads/Template-Data-Populasi-PT-2023.xlsx");
+        $filePath = public_path("file/downloads/Template-Data-Populasi-PT-2023.xlsx");
         return response()->download($filePath);
     }
 

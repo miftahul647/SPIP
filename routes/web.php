@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CollectionDataSatdik;
+use App\Http\Controllers\InternationalSchoolController;
+
+
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
 use App\Http\Controllers\Admin\MonitorSuratTugasController;
@@ -36,10 +39,14 @@ Route::get('/sekolah', [DataViewJagaSekolahSearchController::class, 'index'])->n
 Route::get('/sekolah/search', [DataViewJagaSekolahSearchController::class, 'search'])->name('search-sekolah');
 Route::get('/sekolah/details/{id}', [DetailSekolahController::class, 'index'])->name('detail-sekolah');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('portal-dashboard');
+
 Route::get('/survey', [CollectionDataSatdik::class, 'index'])->name('collect-data');
+Route::post('/survey/localschool', [CollectionDataSatdik::class, 'storeLocalSchool'])->name('store-school');
+Route::post('/survey/internationalschool', [InternationalSchoolController::class, 'store'])->name('international-school');
 
 Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePopulasiSekolah'])->name('download-template-sekolah');
 Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');
+
 
 Route::prefix('admin')
     ->group(function() {

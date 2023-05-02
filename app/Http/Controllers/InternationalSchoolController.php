@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\LocalSchool;
+use App\Models\InternationalSchool;
 
-class CollectionDataSatdik extends Controller
+class InternationalSchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,20 +14,7 @@ class CollectionDataSatdik extends Controller
      */
     public function index()
     {
-        return view('pages.collect-data-satdik');
-    }
-
-    public function downloadTemplatePopulasiSekolah() 
-    {
-        
-        $file = public_path("file/downloads/Template-Data-Populasi-Sekolah-2023.xlsx");
-        return response()->download($file);
-    }
-
-    public function downloadTemplatePT()
-    {
-        $filePath = public_path("file/downloads/Template-Data-Populasi-PT-2023.xlsx");
-        return response()->download($filePath);
+        //
     }
 
     /**
@@ -46,41 +33,19 @@ class CollectionDataSatdik extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeLocalSchool(Request $request)
+    public function store(Request $request)
     {
-        $this->validate($request, [
-            'jenjang_pendidikan' => 'required',
-            'province_id' => 'required',
-            'regency_id' => 'required',
-            'satuan_pendidikan' => 'required',
-            'npsn' => 'required',
-            'nama_pic' => 'required',
-            'jabatan_pic' => 'required',
-            'no_pic' => 'required',
-            'document' => 'required|mimes:xls,xlsx|max:2048'
-        ], [
-            'jenjang_pendidikan.required' => 'Jenjang pendidikan wajib di isi',
-            'province_id.required' => 'Provinsi tidak boleh kosong',
-            'regency_id.required' => 'Kabupaten tidak boleh kosong',
-            'satuan_pendidikan.required' => 'Satuan pendidikan tidak boleh kosong',
-            'npsn.required' => 'NPSN tidak boleh kosong',
-            'nama_pic.required' => 'Nama PIC tidak boleh kosong',
-            'jabatan_pic.required' => 'Jabatan PIC tidak boleh kosong',
-            'no_pic.required' => 'No PIC tidak boleh kosong',
-            'document.required' => 'Document tidak boleh kosong',
-            'document.mimes' => 'Document berbentuk xls atau xlsx',
-        ]);
-
+        // $getRequestAll = $request->all();
+        // dd($getRequestAll);
         $path = 'public/documents/';
         // upload document
         $document = $request->file('document');
         $nama_document = time().'_'.$document->getClientOriginalName();
         $document->storePubliclyAs($path, $nama_document);
 
-        $localSchool = LocalSchool::create([
+        $international = InternationalSchool::create([
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'province_id' => $request->province_id,
-            'regency_id' => $request->regency_id,
+            'negara' => $request->negara,
             'satuan_pendidikan' => $request->satuan_pendidikan,
             'npsn' => $request->npsn,
             'nama_pic' => $request->nama_pic,
@@ -90,8 +55,8 @@ class CollectionDataSatdik extends Controller
             'document' => $nama_document
         ]);
 
-        if ($localSchool) {
-            return redirect('/survey')->with('success', 'Upload document succes');
+        if ($international) {
+            return redirect('/survey')->with('success', 'Data success');
         } else {
             return redirect('/survey')->with('failed', 'Something error');
         }

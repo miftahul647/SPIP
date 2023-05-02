@@ -14,8 +14,7 @@ class SchoolSeeder extends Seeder
      */
     public function run()
     {
-        School::truncate();
-        $csvData = fopen(base_path('database/csv/database.csv'), 'r');
+        $csvData = fopen(base_path('database/csv/newseederschool.csv'), 'r');
         $transRow = true;
         while (($data = fgetcsv($csvData, 555, ',')) !== false) {
             if (!$transRow) {

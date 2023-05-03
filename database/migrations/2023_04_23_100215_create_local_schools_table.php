@@ -22,7 +22,7 @@ class CreateLocalSchoolsTable extends Migration
             $table->integer('npsn')->nullable();
             $table->string('nama_pic');
             $table->string('jabatan_pic');
-            $table->bigInteger('no_pic', 50);
+            $table->bigInteger('no_pic');
             $table->string('document');
 
             $table->softDeletes();

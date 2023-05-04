@@ -45,7 +45,7 @@ class InternationalSchoolController extends Controller
 
         $international = InternationalSchool::create([
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'negara' => $request->negara,
+            'country_id' => $request->country_id,
             'satuan_pendidikan' => $request->satuan_pendidikan,
             'npsn' => $request->npsn,
             'nama_pic' => $request->nama_pic,

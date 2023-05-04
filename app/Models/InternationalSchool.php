@@ -14,7 +14,7 @@ class InternationalSchool extends Model
     protected $table = 'international_schools';
     protected $fillable = [
         'jenjang_pendidikan',
-        'negara',
+        'country_id',
         'satuan_pendidikan',
         'npsn',
         'nama_pic',

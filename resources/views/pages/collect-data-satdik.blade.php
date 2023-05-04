@@ -15,7 +15,7 @@
       </h6>
   @endcomponent
   
-  <div class="dashboard-page-wrap mb-5">
+  <div class="dashboard-page-wrap mb-5" id="locations">
     <div class="container">
       {{-- Template excel --}}
       <h5 class="title">
@@ -62,7 +62,7 @@
       </nav>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="nasional" role="tabpanel" aria-labelledby="nasional-tab">
-          <div id="locations">
+          <div>
             <form action="{{ route('store-school') }}" method="POST" enctype="multipart/form-data" v-if="jenjang != 'PT'" >
               @csrf
               <div class="mt-4">
@@ -74,7 +74,7 @@
                   <label for="selectJenjang" class="form-label">Jenjang pendidikan*</label>
                   <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
                     name="jenjang_pendidikan" id="selectJenjang" v-model="jenjang">
-                    <option value="">Pilih jenjang</option>
+                    <option value="">-- Pilih jenjang --</option>
                     <option value="sd">SD</option>
                     <option value="smp">SMP</option>
                     <option value="SMA">SMA</option>
@@ -145,7 +145,7 @@
                     name="npsn" 
                     id="npsn" 
                     class="form-control @error('npsn') is-invalid @enderror" 
-                    placeholder="">
+                    placeholder="Masukkan NPSN jika NPSN pada pilihan di atas tidak sesuai">
                     @error('npsn')
                       <span class="text-danger">
                         {{ $message }}
@@ -267,20 +267,6 @@
                   @enderror
                 </div>
                 <div class="col-6 mt-3">
-                  <label for="npsn" class="form-label">NPSN</label>
-                  <input 
-                    type="text" 
-                    name="npsn" 
-                    id="npsn" 
-                    class="form-control @error('npsn') is-invalid @enderror" 
-                    placeholder="">
-                    @error('npsn')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                </div>
-                <div class="col-6 mt-3">
                   <label for="nama_pic" class="form-label">Nama PIC*</label>
                   <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
                   @error('nama_pic')
@@ -326,19 +312,18 @@
         <div class="tab-pane fade" id="internasional" role="tabpanel" aria-labelledby="internasional-tab">
           <form action="{{ route('international-school') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="mt-4" id="locations">
+            <div class="mt-4">
               <h5 class="title">
                 Form satuan pendidikan Luar Negeri
               </h5>
               <div class="col-6 mt-3">
-                <label for="jenjang_pendidikan" class="form-label">Jenjang pendidikan</label>
+                <label for="jenjang_pendidikan" class="form-label">Jenjang pendidikan*</label>
                 <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
                   name="jenjang_pendidikan" id="jenjang_pendidikan">
                   <option value="">-- Pilih Jenjang --</option>
                   <option value="sd">SD</option>
                   <option value="smp">SMP</option>
                   <option value="SMA">SMA</option>
-                  <option value="PT">PERGURUAN TINGGI</option>
                 </select>
                 {{-- @error('jenjang_pendidikan')
                   <span class="text-danger">
@@ -347,15 +332,14 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="negara" class="form-label">Negara</label>
+                <label for="negara" class="form-label">Negara*</label>
                 <select 
                   class="form-select @error('negara') is-invalid @enderror" 
                   id="negara" 
-                  name="negara" >
-                  <option disabled value="" selected>-- Pilih --</option>
-                  <option value="malaysia">Malaysia</option>
-                  <option value="arab-saudi">Arab Saudi</option>
-                  <option value="myanmar">Myanmar</option>
+                  name="country_id"
+                  v-model="countries_id" >
+                  <option disabled value="" selected>-- Pilih Negara --</option>
+                  <option v-for="country in countries" :value="country.id">@{{ country.name }}</option>
                 </select>
                 {{-- @error('negara')
                   <span class="text-danger">
@@ -364,13 +348,15 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan</label>
-                <input 
-                  type="text" 
+                <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
+                <select 
+                  class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
                   name="satuan_pendidikan" 
                   id="satuan_pendidikan" 
-                  class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
-                  placeholder="">
+                  v-model="foreignSchools_id">
+                  <option disabled value="">-- Pilih --</option>
+                  <option v-for="foreign in foreignSchools" :value="foreign.nama_sekolah">@{{ foreign.nama_sekolah }}</option>
+                </select>
                 {{-- @error('satuan_pendidikan')
                   <span class="text-danger">
                     {{ $message }}
@@ -384,7 +370,7 @@
                   name="npsn" 
                   id="npsn" 
                   class="form-control @error('npsn') is-invalid @enderror" 
-                  placeholder="">
+                  placeholder="Masukkan NPSN jika NPSN pada pilihan di atas tidak sesuai">
                   {{-- @error('npsn')
                     <span class="text-danger">
                       {{ $message }}
@@ -392,7 +378,7 @@
                   @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="nama_pic" class="form-label">Nama PIC</label>
+                <label for="nama_pic" class="form-label">Nama PIC*</label>
                 <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
                 {{-- @error('nama_pic')
                   <span class="text-danger">
@@ -401,7 +387,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="jabatan_pic" class="form-label">Jabatan PIC</label>
+                <label for="jabatan_pic" class="form-label">Jabatan PIC*</label>
                 <input type="text" name="jabatan_pic" id="jabatan_pic" class="form-control @error('jabatan_pic') is-invalid @enderror" placeholder="">
                 {{-- @error('jabatan_pic')
                   <span class="text-danger">
@@ -410,7 +396,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="no_pic" class="form-label">Contact PIC</label>
+                <label for="no_pic" class="form-label">Contact PIC*</label>
                 <input type="number" name="no_pic" id="no_pic" class="form-control @error('no_pic') is-invalid @enderror" placeholder="">
                 {{-- @error('no_pic')
                   <span class="text-danger">
@@ -419,7 +405,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload File</label>
+                <label for="document" class="form-label">Upload Document</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 {{-- @error('document')
                   <span class="text-danger">
@@ -448,17 +434,36 @@
         el: "#locations",
         mounted() {
           this.getProvincesData();
+          this.getCountriesData();
         },
         data: {
           jenjang: '',
+          countries: null,
           provinces: null,
           regencies: null,
           schools: null,
+          foreignSchools: null,
+          countries_id: '',
           provinces_id: '',
           regencies_id: '',
-          schools_id: ''
+          schools_id: '',
+          foreignSchools_id: '',
         },
         methods: {
+          getCountriesData() {
+            var self = this;
+            axios.get('{{ route('api-countries') }}')
+              .then(function (response) {
+                  self.countries = response.data;
+              })
+          },
+          getForeignSchoolsData() {
+            var self = this;
+            axios.get('{{ url('api/foreign') }}/' + self.countries_id)
+              .then(function (response) {
+                self.foreignSchools = response.data;
+            })
+          },
           getProvincesData() {
             var self = this;
             axios.get('{{ route('api-provinces') }}')
@@ -490,6 +495,10 @@
             this.schools_id = null;
             this.getSchoolsData();
           },
+          countries_id: function(val, oldVal) {
+            this.foreignSchools_id = null;
+            this.getForeignSchoolsData();
+          }
         }
       })
     </script>

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\LocationController;
+use App\Http\Controllers\API\CountrySchoolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,8 @@ Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\
 Route::get('provinces', [LocationController::class, 'provinces'])->name('api-provinces');
 Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
 Route::get('schools/{regencies_id}', [LocationController::class, 'schools'])->name('api-schools');
+
+//API COUNTRY
+Route::get('countries', [CountrySchoolController::class, 'countries'])->name('api-countries');
+Route::get('foreign/{countries_id}', [CountrySchoolController::class, 'foreignSchools'])->name('api-foreign-schools');
+

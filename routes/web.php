@@ -6,6 +6,7 @@ use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CollectionDataSatdik;
 use App\Http\Controllers\InternationalSchoolController;
+use App\Http\Controllers\CollegesController;
 
 
 use App\Http\Controllers\Admin\DashbboardController;
@@ -43,6 +44,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('portal-da
 Route::get('/survey', [CollectionDataSatdik::class, 'index'])->name('collect-data');
 Route::post('/survey/localschool', [CollectionDataSatdik::class, 'storeLocalSchool'])->name('store-school');
 Route::post('/survey/internationalschool', [InternationalSchoolController::class, 'store'])->name('international-school');
+Route::post('/survey/college', [CollegesController::class, 'store'])->name('college');
 
 Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePopulasiSekolah'])->name('download-template-sekolah');
 Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');

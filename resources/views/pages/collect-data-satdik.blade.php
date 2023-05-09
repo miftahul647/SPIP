@@ -212,7 +212,7 @@
                     <option value="sd">SD</option>
                     <option value="smp">SMP</option>
                     <option value="SMA">SMA</option>
-                    <option value="perguruan-tinggi">PERGURUAN TINGGI</option>
+                    <option value="PT">PERGURUAN TINGGI</option>
                   </select>
                   @error('jenjang_pendidikan')
                     <span class="text-danger">

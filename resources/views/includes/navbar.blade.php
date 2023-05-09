@@ -32,10 +32,10 @@
                         role="button" 
                         data-bs-toggle="dropdown"
                     >
-                        Program Survey
+                        Program
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('collect-data') }}">Pengumpulan data</a></li>
+                        <li><a class="dropdown-item" href="{{ route('collect-data') }}">Pengumpulan data Survey</a></li>
                     </ul>
                 </li>
             </ul>

@@ -10,9 +10,12 @@
       @slot('title')
         Pengumpulan data satuan pendidikan
       @endslot
-      <h6>
-        Form Data satuan pendidikan
-      </h6>
+      <h4>
+        Survei Penilaian Integritas Pendidikan 2023
+      </h4>
+      <p class="small">
+        Survei Penilaian Integritas Pendidikan (SPI-P) merupakan pengukuran yang digunakan sebagai upaya untuk memetakan kondisi integritas pendidikan, risiko korupsi dan capaian implementasi pendidikan antikorupsi yang dilakukan oleh stakeholder sektor pendidikan. SPI-P akan memotret praktik integritas, baik pada lingkup perilaku peserta didik maupun ekosistem pendidikan yang mempengaruhinya seperti tenaga pendidik, tenaga kependidikan dan aspek pengelolaan, termasuk dalam interaksinya dengan berbagai elemen/jejaring pendidikan. KPK berharap partisipasi Bapak/Ibu untuk mengisi data populasi satuan pendidikan berikut yang akan digunakan sebagai data responden. Partisipasi Bapak/Ibu sangat berharga dalam menentukan keberhasilan pelaksanaan SPI-P 2023. Terima kasih.
+      </p>
   @endcomponent
   
   <div class="dashboard-page-wrap mb-5" id="locations">
@@ -69,6 +72,7 @@
                 <h5 class="title">
                   Form Satuan Pendidikan Dalam Negeri
                 </h5>
+
                 {{-- Jenjang Pendidikan --}}
                 <div class="col-6 mt-3">
                   <label for="selectJenjang" class="form-label">Jenjang pendidikan*</label>
@@ -76,7 +80,7 @@
                     name="jenjang_pendidikan" id="selectJenjang" v-model="jenjang">
                     <option value="">-- Pilih jenjang --</option>
                     <option value="sd">SD</option>
-                    <option value="smp">SMP</option>
+                    <option value="smp">SMP</opstion>
                     <option value="SMA">SMA</option>
                     <option value="PT">PERGURUAN TINGGI</option>
                   </select>
@@ -152,9 +156,9 @@
                       </span>
                     @enderror
                 </div>
-                {{-- Nama PIC --}}
+                {{-- Nama Narahubung --}}
                 <div class="col-6 mt-3">
-                  <label for="nama_pic" class="form-label">Nama PIC*</label>
+                  <label for="nama_pic" class="form-label">Nama Narahubung*</label>
                   <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
                   @error('nama_pic')
                     <span class="text-danger">
@@ -162,9 +166,9 @@
                     </span>
                   @enderror
                 </div>
-                {{-- Jabatan PIC --}}
+                {{-- Jabatan Narahubung --}}
                 <div class="col-6 mt-3">
-                  <label for="jabatan_pic" class="form-label">Jabatan PIC*</label>
+                  <label for="jabatan_pic" class="form-label">Jabatan Narahubung*</label>
                   <input type="text" name="jabatan_pic" id="jabatan_pic" class="form-control @error('jabatan_pic') is-invalid @enderror" placeholder="">
                   @error('jabatan_pic')
                     <span class="text-danger">
@@ -172,9 +176,9 @@
                     </span>
                   @enderror
                 </div>
-                {{-- Contact PIC --}}
+                {{-- Contact Narahubung --}}
                 <div class="col-6 mt-3">
-                  <label for="no_pic" class="form-label">Contact PIC*</label>
+                  <label for="no_pic" class="form-label">Contact Narahubung*</label>
                   <input type="number" name="no_pic" id="no_pic" class="form-control @error('no_pic') is-invalid @enderror" placeholder="">
                   @error('no_pic')
                     <span class="text-danger">
@@ -393,7 +397,7 @@
                   @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="nama_pic" class="form-label">Nama PIC*</label>
+                <label for="nama_pic" class="form-label">Nama Narahubung*</label>
                 <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
                 {{-- @error('nama_pic')
                   <span class="text-danger">
@@ -402,7 +406,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="jabatan_pic" class="form-label">Jabatan PIC*</label>
+                <label for="jabatan_pic" class="form-label">Jabatan Narahubung*</label>
                 <input type="text" name="jabatan_pic" id="jabatan_pic" class="form-control @error('jabatan_pic') is-invalid @enderror" placeholder="">
                 {{-- @error('jabatan_pic')
                   <span class="text-danger">
@@ -411,7 +415,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="no_pic" class="form-label">Contact PIC*</label>
+                <label for="no_pic" class="form-label">Contact Narahubung*</label>
                 <input type="number" name="no_pic" id="no_pic" class="form-control @error('no_pic') is-invalid @enderror" placeholder="">
                 {{-- @error('no_pic')
                   <span class="text-danger">
@@ -481,7 +485,7 @@
           },
           getProvincesData() {
             var self = this;
-            axios.get('{{ route('api-provinces') }}')
+            axios.get('{{ route('api-provinces')}}')
               .then(function (response) {
                   self.provinces = response.data;
               })

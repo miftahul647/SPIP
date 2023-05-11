@@ -13,9 +13,7 @@
       <h4>
         Survei Penilaian Integritas Pendidikan 2023
       </h4>
-      <a class="navbar-brand">
-            <img src={{ asset('images/logo_SPI_pendidikan') }} alt="" />
-        </a>
+      <img src={{ asset('images/logo_SPI_pendidikan.png') }} class="img-fluid" alt="" />
       <p class="small">
         Survei Penilaian Integritas Pendidikan (SPI-P) merupakan pengukuran yang digunakan sebagai upaya untuk memetakan kondisi integritas pendidikan, risiko korupsi dan capaian implementasi pendidikan antikorupsi yang dilakukan oleh stakeholder sektor pendidikan. SPI-P akan memotret praktik integritas, baik pada lingkup perilaku peserta didik maupun ekosistem pendidikan yang mempengaruhinya seperti tenaga pendidik, tenaga kependidikan dan aspek pengelolaan, termasuk dalam interaksinya dengan berbagai elemen/jejaring pendidikan. KPK berharap partisipasi Bapak/Ibu untuk mengisi data populasi satuan pendidikan berikut yang akan digunakan sebagai data responden. Partisipasi Bapak/Ibu sangat berharga dalam menentukan keberhasilan pelaksanaan SPI-P 2023. Terima kasih.
       </p>

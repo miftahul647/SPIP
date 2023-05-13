@@ -27,12 +27,26 @@
       </h5>
       <div class="mt-3">
         <div class="mb-3">
-          <a href="{{ route('download-template-sekolah') }}" class="btn btn-warning" type="button">
+          <a
+            href="{{ route('download-template-sekolah') }}" 
+            class="btn btn-warning"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="right" 
+            data-bs-custom-class="custom-tooltip" 
+            data-bs-title="Pimpinan sekolah, guru, siswa, dan orangtua siswa."
+            type="button"
+          >
             Template Sekolah
           </a>
         </div>
         <div>
-          <a href="{{ route('download-template-pt') }}" class="btn btn-warning" type="button">
+          <a href="{{ route('download-template-pt') }}" 
+            class="btn btn-warning"
+            data-bs-toggle="tooltip-pt" 
+            data-bs-placement="right" 
+            data-bs-custom-class="custom-tooltip" 
+            data-bs-title="Pimpinan perguruan tinggi, dosen, dan mahasiswa."
+            type="button">
             Template Perguruan Tinggi
           </a>
         </div>
@@ -540,6 +554,22 @@
       @elseif (Session::has('error'))
         toastr.error('{{ Session::get('error') }}');
       @endif
+    </script>
+  @endpush
+
+  @push('script-js')
+    <script>
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    .forEach(tooltip => {
+      new bootstrap.Tooltip(tooltip)
+    })
+    </script>
+
+    <script>
+      document.querySelectorAll('[data-bs-toggle="tooltip-pt"]')
+    .forEach(tooltip => {
+      new bootstrap.Tooltip(tooltip)
+    })
     </script>
   @endpush
       

@@ -10,17 +10,15 @@
       @slot('title')
         Pengumpulan data satuan pendidikan
       @endslot
-      <h4>
-        Survei Penilaian Integritas Pendidikan 2023
-      </h4>
-      <img src={{ asset('images/logo_SPI_pendidikan.png') }} class="img-fluid" alt="" />
-      <p class="small">
-        Survei Penilaian Integritas Pendidikan (SPI-P) merupakan pengukuran yang digunakan sebagai upaya untuk memetakan kondisi integritas pendidikan, risiko korupsi dan capaian implementasi pendidikan antikorupsi yang dilakukan oleh stakeholder sektor pendidikan. SPI-P akan memotret praktik integritas, baik pada lingkup perilaku peserta didik maupun ekosistem pendidikan yang mempengaruhinya seperti tenaga pendidik, tenaga kependidikan dan aspek pengelolaan, termasuk dalam interaksinya dengan berbagai elemen/jejaring pendidikan. KPK berharap partisipasi Bapak/Ibu untuk mengisi data populasi satuan pendidikan berikut yang akan digunakan sebagai data responden. Partisipasi Bapak/Ibu sangat berharga dalam menentukan keberhasilan pelaksanaan SPI-P 2023. Terima kasih.
-      </p>
+      
   @endcomponent
   
   <div class="dashboard-page-wrap mb-5" id="locations">
     <div class="container">
+      <img src={{ asset('images/logo_SPI_pendidikan.png') }}  style="float:left" width="300px" alt="logo" />
+      <p style="text-align:justify">
+        Survei Penilaian Integritas Pendidikan (SPI-P) merupakan pengukuran yang digunakan sebagai upaya untuk memetakan kondisi integritas pendidikan, risiko korupsi dan capaian implementasi pendidikan antikorupsi yang dilakukan oleh stakeholder sektor pendidikan. SPI-P akan memotret praktik integritas, baik pada lingkup perilaku peserta didik maupun ekosistem pendidikan yang mempengaruhinya seperti tenaga pendidik, tenaga kependidikan dan aspek pengelolaan, termasuk dalam interaksinya dengan berbagai elemen/jejaring pendidikan. KPK berharap partisipasi Bapak/Ibu untuk mengisi data populasi satuan pendidikan berikut yang akan digunakan sebagai data responden. Partisipasi Bapak/Ibu sangat berharga dalam menentukan keberhasilan pelaksanaan SPI-P 2023. Terima kasih.
+      </p>
       {{-- Template excel --}}
       <h5 class="title">
         Silahkan unduh dan lengkapi file berikut sesuai jenjang pendidikan
@@ -69,11 +67,15 @@
           <div>
             <form action="{{ route('store-school') }}" method="POST" enctype="multipart/form-data" v-if="jenjang != 'PT'" >
               @csrf
-              <div class="mt-4">
-                <h5 class="title">
-                  Form Satuan Pendidikan Dalam Negeri
-                </h5>
-                
+              <div class="col-6 mt-3">
+                <label for="pilihan">Search</label>
+                <select class="form-select" id="pilihan" onchange="showSearchInput()">
+                  <option value="">Search by</option>
+                  <option value="NPSN">NPSN</option>
+                  <option value="jenjang">Jenjang & Lokasi</option>
+                </select>
+                <input type="text" id="cari" name="cari" class="form-control">
+              </div>
 
                 {{-- Jenjang Pendidikan --}}
                 <div class="col-6 mt-3">
@@ -450,6 +452,17 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function showSearchInput() {
+        var select = document.getElementById("pilihan");
+			  var selectedOption = select.options[select.selectedIndex].value;
+        if (selectedOption == "lainnya") {
+          document.getElementById("search-input").style.display = "block";
+        } else {
+          document.getElementById("search-input").style.display = "none";
+        }
+      }
+    </script>
     <script>
       var locations = new Vue({
         el: "#locations",

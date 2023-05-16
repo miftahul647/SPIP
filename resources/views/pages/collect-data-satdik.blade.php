@@ -74,6 +74,16 @@
             aria-selected="false">
               Luar Negeri
           </a>
+          <a 
+            class="nav-link" 
+            id="nav-profile-tab" 
+            data-bs-toggle="tab" 
+            href="#perguruan-tinggi" 
+            role="tab" 
+            aria-controls="nav-internasional" 
+            aria-selected="false">
+              Perguruan Tinggi
+          </a>
         </div>
       </nav>
       <div class="tab-content" id="myTabContent">
@@ -81,15 +91,11 @@
           <div>
             <form action="{{ route('store-school') }}" method="POST" enctype="multipart/form-data" v-if="jenjang != 'PT'" >
               @csrf
-              <div class="col-6 mt-3">
-                <label for="pilihan">Search</label>
-                <select class="form-select" id="pilihan" onchange="showSearchInput()">
-                  <option value="">Search by</option>
-                  <option value="NPSN">NPSN</option>
-                  <option value="jenjang">Jenjang & Lokasi</option>
-                </select>
-                <input type="text" id="cari" name="cari" class="form-control">
-              </div>
+              <div class="mt-4">
+                <h5 class="title">
+                  Form Satuan Pendidikan Dalam Negeri
+                </h5>
+                
 
                 {{-- Jenjang Pendidikan --}}
                 <div class="col-6 mt-3">
@@ -485,6 +491,10 @@
           this.getCountriesData();
         },
         data: {
+          province: '',
+          kabupaten: '',
+          satuanPendidikan: '',
+          npsn: '',
           jenjang: '',
           countries: null,
           provinces: null,
@@ -498,6 +508,21 @@
           foreignSchools_id: '',
         },
         methods: {
+          async changeItem() {
+            const noNpsn = this.npsn
+            const { data } = await axios.get(`https://jaga.id/api/v5/sekolah?npsn=${noNpsn}`)
+            
+            const provinsi = data.data.result[0].provinsi
+            const kabupaten = data.data.result[0].kota_kab
+            const satuanPendidikan = `${data.data.result[0].npsn} - ${data.data.result[0].nama}`
+            const jenjang = data.data.result[0].bentuk_pendidikan
+
+            this.province = provinsi
+            this.kabupaten = kabupaten
+            this.satuanPendidikan = satuanPendidikan
+            this.jenjang = jenjang
+
+          },
           getCountriesData() {
             var self = this;
             axios.get('{{ route('api-countries') }}')

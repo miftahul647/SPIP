@@ -10,17 +10,15 @@
       @slot('title')
         Pengumpulan data satuan pendidikan
       @endslot
-      <h4>
-        Survei Penilaian Integritas Pendidikan 2023
-      </h4>
-      <img src={{ asset('images/logo_SPI_pendidikan.png') }} class="img-fluid" alt="" />
-      <p class="small">
-        Survei Penilaian Integritas Pendidikan (SPI-P) merupakan pengukuran yang digunakan sebagai upaya untuk memetakan kondisi integritas pendidikan, risiko korupsi dan capaian implementasi pendidikan antikorupsi yang dilakukan oleh stakeholder sektor pendidikan. SPI-P akan memotret praktik integritas, baik pada lingkup perilaku peserta didik maupun ekosistem pendidikan yang mempengaruhinya seperti tenaga pendidik, tenaga kependidikan dan aspek pengelolaan, termasuk dalam interaksinya dengan berbagai elemen/jejaring pendidikan. KPK berharap partisipasi Bapak/Ibu untuk mengisi data populasi satuan pendidikan berikut yang akan digunakan sebagai data responden. Partisipasi Bapak/Ibu sangat berharga dalam menentukan keberhasilan pelaksanaan SPI-P 2023. Terima kasih.
-      </p>
+      
   @endcomponent
   
   <div class="dashboard-page-wrap mb-5" id="locations">
     <div class="container">
+      <img src={{ asset('images/logo_SPI_pendidikan.png') }}  style="float:left" width="300px" alt="logo" />
+      <p style="text-align:justify">
+        Survei Penilaian Integritas Pendidikan (SPI-P) merupakan pengukuran yang digunakan sebagai upaya untuk memetakan kondisi integritas pendidikan, risiko korupsi dan capaian implementasi pendidikan antikorupsi yang dilakukan oleh stakeholder sektor pendidikan. SPI-P akan memotret praktik integritas, baik pada lingkup perilaku peserta didik maupun ekosistem pendidikan yang mempengaruhinya seperti tenaga pendidik, tenaga kependidikan dan aspek pengelolaan, termasuk dalam interaksinya dengan berbagai elemen/jejaring pendidikan. KPK berharap partisipasi Bapak/Ibu untuk mengisi data populasi satuan pendidikan berikut yang akan digunakan sebagai data responden. Partisipasi Bapak/Ibu sangat berharga dalam menentukan keberhasilan pelaksanaan SPI-P 2023. Terima kasih.
+      </p>
       {{-- Template excel --}}
       <h5 class="title">
         Silahkan unduh dan lengkapi file berikut sesuai jenjang pendidikan
@@ -91,26 +89,30 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="nasional" role="tabpanel" aria-labelledby="nasional-tab">
           <div class="card mt-3">
-            <div class="card-header">
-              Cari sekolah berdasarkan NPSN
+            <div class="card-header fw-bold">
+              Cari Sekolah berdasarkan
             </div>
             <div class="card-body">
-              
-                {{-- NPSN --}}
-                <div class="col-6">
-                  <label for="npsn" class="form-label">Cari Sekolah</label>
-                  <input 
-                    type="text" 
-                    name="npsn" 
-                    id="npsn"
-                    v-model="npsn"
-                    class="form-control" 
-                    placeholder="Cari Sekolah">
-                </div>
-                <div class="mt-3">
-                  <button @click="changeItem" type="submit" class="btn btn-primary">Cari</button>
-                </div>
-
+              <div class="col-6">
+                <label for="pilihan">Cari Sekolah berdasarkan</label>
+                <select class="form-select" id="pilihan" onchange="showSearchInput()">
+                  <option value="">Search by</option>
+                  <option value="NPSN">NPSN</option>
+                  <option value="jenjang">Jenjang & Lokasi</option>
+                </select>
+              </div>
+              <div class="col-6 mt-4">
+                <input 
+                  type="text" 
+                  name="npsn" 
+                  id="npsn"
+                  v-model="npsn"
+                  class="form-control" 
+                  placeholder="Masukkan NPSN">
+              </div>
+              <div class="mt-3">
+                <button @click="changeItem" type="submit" class="btn btn-primary">Cari</button>
+              </div>
             </div>
           </div>
           <div class="card mt-3">
@@ -122,7 +124,7 @@
                 @csrf
                 <div class="">
                   {{-- Provinsi --}}
-                  <div class="col-6 mt-3">
+                  <div class="col-6">
                     <label for="provinces_id" class="form-label">Provinsi*</label>
                     <input 
                       type="text" 
@@ -497,6 +499,17 @@
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      function showSearchInput() {
+        var select = document.getElementById("pilihan");
+			  var selectedOption = select.options[select.selectedIndex].value;
+        if (selectedOption == "lainnya") {
+          document.getElementById("search-input").style.display = "block";
+        } else {
+          document.getElementById("search-input").style.display = "none";
+        }
+      }
+    </script>
     <script>
       var locations = new Vue({
         el: "#locations",

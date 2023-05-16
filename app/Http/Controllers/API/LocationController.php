@@ -24,4 +24,6 @@ class LocationController extends Controller
     {
         return School::where('regency_id', $regencies_id)->get();
     }
+    
+
 }

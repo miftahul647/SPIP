@@ -300,6 +300,7 @@
                       class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
                       name="jenjang_pendidikan" 
                       id="level"
+                      v-model="jenjang_id"
                       >
                       <option disabled value="" selected >-- Pilih Jenjang --</option>
                       <option v-for="jenjang in jenjangs" :value="jenjang.id">@{{ jenjang.nama_jenjang }}</option>
@@ -313,14 +314,14 @@
                   {{-- Satuan Pendidikan --}}
                   <div class="col-6 mt-3">
                     <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
-                    <input 
-                      type="text" 
-                      class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
+                    <select 
+                      class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
                       name="satuan_pendidikan" 
-                      :value="satuanPendidikan" 
                       id="satuan_pendidikan"
-                      
                       >
+                      <option value="">-- Pilih Pendidikan</option>
+                      <option v-for="school in schools" :value="school.nama_sekolah">@{{ school.nama_sekolah }}</option>
+                    </select>
                     @error('satuan_pendidikan')
                       <span class="text-danger">
                         {{ $message }}
@@ -670,6 +671,7 @@
           countries_id: '',
           provinces_id: '',
           regencies_id: '',
+          jenjang_id: '',
           schools_id: '',
           foreignSchools_id: '',
         },
@@ -726,7 +728,7 @@
           },
           getSchoolsData() {
             var self = this;
-            axios.get('{{ url('api/schools') }}/' + self.regencies_id)
+            axios.get('{{ url('api/schools') }}/' + self.regencies_id + '/' + self.jenjang_id)
               .then(function (response) {
                 self.schools = response.data;
             })
@@ -738,6 +740,10 @@
             this.getRegenciesData();
           },
           regencies_id: function(val, oldVal) {
+            this.jenjang_id = null;
+            this.getJenjangData();
+          },
+          jenjang_id: function name(val, oldVal) {
             this.schools_id = null;
             this.getSchoolsData();
           },

@@ -15,6 +15,7 @@
 	@stack('prepend-style')
 	@include('includes.style')
 	@stack('addon-style')
+	<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
 <body>
@@ -31,5 +32,6 @@
 	@include('includes.script')
 	@stack('prepend-script')
 	@stack('addon-script')
+	@stack('script-js')
 </body>
 </html>

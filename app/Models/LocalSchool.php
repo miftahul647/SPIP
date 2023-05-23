@@ -14,8 +14,8 @@ class LocalSchool extends Model
     protected $table = 'local_schools';
     protected $fillable = [
         'jenjang_pendidikan',
-        'province_id',
-        'regency_id',
+        'provinsi',
+        'kabupaten',
         'satuan_pendidikan',
         'npsn',
         'nama_pic',

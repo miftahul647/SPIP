@@ -42,7 +42,8 @@ Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\
 //API REGION
 Route::get('provinces', [LocationController::class, 'provinces'])->name('api-provinces');
 Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
-Route::get('schools/{regencies_id}', [LocationController::class, 'schools'])->name('api-schools');
+Route::get('jenjangs', [LocationController::class, 'jenjang'])->name('api-jenjangs');
+Route::get('schools/{regencies_id}/{jenjang_id}', [LocationController::class, 'schools'])->name('api-schools');
 
 //API COUNTRY
 Route::get('countries', [CountrySchoolController::class, 'countries'])->name('api-countries');

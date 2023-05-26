@@ -10,7 +10,7 @@
       @slot('title')
         Pengumpulan data satuan pendidikan
       @endslot
-      
+      <h4>Survei Penilaian Integritas Pendidikan 2023</h4>
   @endcomponent
   
   <div class="dashboard-page-wrap mb-5" id="locations">
@@ -49,9 +49,7 @@
           </a>
         </div>
       </div>
-
       <hr class="border border-primary border-1 opacity-50">
-
       {{-- Panel Form --}}
       <nav class="mt-4">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -132,11 +130,11 @@
                       :value="province" 
                       id="provinces_id"
                       >
-                    @error('province_id')
+                      @error('province_id')
                       <span class="text-danger">
                         {{ $message }}
                       </span>
-                    @enderror
+                      @enderror
                   </div>
                   {{-- Kabupaten/Kota --}}
                   <div class="col-6 mt-3">
@@ -149,28 +147,11 @@
                       id="kabupaten"
                       
                       >
-                    @error('regency_id')
+                      @error('regency_id')
                       <span class="text-danger">
                         {{ $message }}
                       </span>
-                    @enderror
-                  </div>
-                  {{-- Satuan Pendidikan --}}
-                  <div class="col-6 mt-3">
-                    <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
-                    <input 
-                      type="text" 
-                      class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
-                      name="satuan_pendidikan" 
-                      :value="satuanPendidikan" 
-                      id="satuan_pendidikan"
-                      
-                      >
-                    @error('satuan_pendidikan')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
+                      @enderror
                   </div>
                   {{-- Jenjang Pendidikan --}}
                   <div class="col-6 mt-3">
@@ -188,6 +169,23 @@
                         {{ $message }}
                       </span>
                     @enderror
+                  </div>
+                  {{-- Satuan Pendidikan --}}
+                  <div class="col-6 mt-3">
+                    <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
+                    <input 
+                      type="text" 
+                      class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
+                      name="satuan_pendidikan" 
+                      :value="satuanPendidikan" 
+                      id="satuan_pendidikan"
+                      
+                      >
+                      @error('satuan_pendidikan')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                      @enderror
                   </div>
                   {{-- NPSN --}}
                   <div class="col-6 mt-3">
@@ -236,7 +234,7 @@
                   </div>
                   {{-- Upload Document --}}
                   <div class="col-6 mt-3">
-                    <label for="document" class="form-label">Upload Document*</label>
+                    <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
                     <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                     @error('document')
                       <span class="text-danger">
@@ -245,7 +243,7 @@
                     @enderror
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
                   </div>
                 </div>
               </form>
@@ -375,7 +373,7 @@
                   </div>
                   {{-- Upload Document --}}
                   <div class="col-6 mt-3">
-                    <label for="document" class="form-label">Upload Document*</label>
+                    <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
                     <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                     @error('document')
                       <span class="text-danger">
@@ -384,7 +382,7 @@
                     @enderror
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Kirim</button>
                   </div>
                 </div>
               </form>
@@ -434,7 +432,7 @@
                 <select 
                   class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
                   name="satuan_pendidikan" 
-                  id="satuan_pendidikan" 
+                  id="satuan_pendidikan"  
                   v-model="foreignSchools_id">
                   <option disabled value="">-- Pilih --</option>
                   <option v-for="foreign in foreignSchools" :value="foreign.nama_sekolah">@{{ foreign.nama_sekolah }}</option>
@@ -487,7 +485,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload Document</label>
+                <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 {{-- @error('document')
                   <span class="text-danger">
@@ -496,7 +494,7 @@
                 @enderror --}}
               </div>
               <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
               </div>
             </div>
           </form>
@@ -614,7 +612,7 @@
                 @enderror
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload Document*</label>
+                <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 @error('document')
                   <span class="text-danger">
@@ -623,13 +621,12 @@
                 @enderror
               </div>
               <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
               </div>
             </div>
           </form>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -689,7 +686,6 @@
             this.kabupaten = kabupaten
             this.satuanPendidikan = satuanPendidikan
             this.jenjang = jenjang
-
           },
           getCountriesData() {
             var self = this;

@@ -234,7 +234,7 @@
                   </div>
                   {{-- Upload Document --}}
                   <div class="col-6 mt-3">
-                    <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
+                    <label for="document" class="form-label">Upload File Excel*</label>
                     <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                     @error('document')
                       <span class="text-danger">
@@ -265,7 +265,7 @@
                       name="provinsi" 
                       id="provinces_id"
                       v-model="provinces_id">
-                      <option disabled value="">-- Pilih Provinsi</option>
+                      <option disabled value="">-- Pilih Provinsi --</option>
                       <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                     </select>
                     @error('provinsi')
@@ -282,7 +282,7 @@
                       name="kabupaten" 
                       id="kabupaten"
                       v-model="regencies_id">
-                      <option disabled value="">-- Pilih Kabupaten</option>
+                      <option disabled value="">-- Pilih Kabupaten --</option>
                       <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                     </select>
                     @error('kabupaten')
@@ -317,7 +317,7 @@
                       name="satuan_pendidikan" 
                       id="satuan_pendidikan"
                       >
-                      <option value="">-- Pilih Pendidikan</option>
+                      <option value="">-- Pilih Pendidikan --</option>
                       <option v-for="school in schools" :value="school.nama_sekolah">@{{ school.nama_sekolah }}</option>
                     </select>
                     @error('satuan_pendidikan')
@@ -373,8 +373,14 @@
                   </div>
                   {{-- Upload Document --}}
                   <div class="col-6 mt-3">
-                    <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
-                    <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
+                    <label for="document" class="form-label">Upload file excel*</label>
+                    <input 
+                      type="file" 
+                      name="document" 
+                      id="document" 
+                      class="form-control @error('document') is-invalid @enderror"
+                      placeholder="upload fle excel"
+                      >
                     @error('document')
                       <span class="text-danger">
                         {{ $message }}
@@ -485,7 +491,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
+                <label for="document" class="form-label">Upload File Excel*</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 {{-- @error('document')
                   <span class="text-danger">
@@ -506,23 +512,6 @@
               <h5 class="title">
                 Form Perguruan Tinggi
               </h5>
-              {{-- Jenjang Pendidikan --}}
-              <div class="col-6 mt-3">
-                <label for="selectJenjang" class="form-label">Jenjang pendidikan*</label>
-                <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
-                  name="jenjang_pendidikan" id="selectJenjang" v-model="jenjang">
-                  <option value="">Pilih jenjang</option>
-                  <option value="sd">SD</option>
-                  <option value="smp">SMP</option>
-                  <option value="SMA">SMA</option>
-                  <option value="PT">PERGURUAN TINGGI</option>
-                </select>
-                @error('jenjang_pendidikan')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
               {{-- Provinsi --}}
               <div class="col-6 mt-3">
                 <label for="provinces_id" class="form-label">Provinsi*</label>
@@ -612,7 +601,7 @@
                 @enderror
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload File Excel yang telah Diisi*</label>
+                <label for="document" class="form-label">Upload File Excel*</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 @error('document')
                   <span class="text-danger">
@@ -654,7 +643,7 @@
           this.getCountriesData();
         },
         data: {
-          pilihan: 'NPSN',
+          pilihan: 'level',
           province: '',
           kabupaten: '',
           satuanPendidikan: '',

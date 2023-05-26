@@ -599,7 +599,7 @@
                 @enderror
               </div>
               <div class="col-6 mt-3">
-                <label for="no_narahubung" class="form-label">Nomor/Wa Narahubung*</label>
+                <label for="no_narahubung" class="form-label">Contact Narahubung*</label>
                 <input 
                   type="number" 
                   name="no_narahubung" 

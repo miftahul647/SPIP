@@ -45,7 +45,7 @@
             data-bs-custom-class="custom-tooltip" 
             data-bs-title="Pimpinan perguruan tinggi, dosen, dan mahasiswa."
             type="button">
-            Template Perguruan Tinggi
+            Form Perguruan Tinggi 
           </a>
         </div>
       </div>

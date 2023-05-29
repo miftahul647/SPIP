@@ -45,7 +45,7 @@
             data-bs-custom-class="custom-tooltip" 
             data-bs-title="Pimpinan perguruan tinggi, dosen, dan mahasiswa."
             type="button">
-            Template Perguruan Tinggi
+            Template Perguruan Tinggi 
           </a>
         </div>
       </div>
@@ -549,17 +549,21 @@
               {{-- Perguruan Tinggi --}}
               <div class="col-6 mt-3">
                 <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi*</label>
-                <input 
-                  type="text" 
+                <select 
+                  class="form-select @error('perguruan_tinggi') is-invalid @enderror" 
                   name="perguruan_tinggi" 
-                  id="perguruan_tinggi" 
-                  class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
+                  id="perguruan_tinggi"  
+                  v-model="regencies_id">
+                  <option disabled value="">-- Pilih --</option>
+                  <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+                </select>
                 @error('perguruan_tinggi')
                   <span class="text-danger">
                     {{ $message }}
                   </span>
                 @enderror
               </div>
+              
               {{-- Nama Narahubung --}}
               <div class="col-6 mt-3">
                 <label for="nama_narahubung" class="form-label">Nama Narahubung*</label>

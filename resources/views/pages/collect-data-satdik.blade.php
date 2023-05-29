@@ -45,7 +45,7 @@
             data-bs-custom-class="custom-tooltip" 
             data-bs-title="Pimpinan perguruan tinggi, dosen, dan mahasiswa."
             type="button">
-            Form Perguruan Tinggi 
+            Template Perguruan Tinggi 
           </a>
         </div>
       </div>
@@ -506,23 +506,6 @@
               <h5 class="title">
                 Form Perguruan Tinggi
               </h5>
-              {{-- Jenjang Pendidikan --}}
-              <div class="col-6 mt-3">
-                <label for="selectJenjang" class="form-label">Jenjang pendidikan*</label>
-                <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
-                  name="jenjang_pendidikan" id="selectJenjang" v-model="jenjang">
-                  <option value="">Pilih jenjang</option>
-                  <option value="sd">SD</option>
-                  <option value="smp">SMP</option>
-                  <option value="SMA">SMA</option>
-                  <option value="PT">PERGURUAN TINGGI</option>
-                </select>
-                @error('jenjang_pendidikan')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
               {{-- Provinsi --}}
               <div class="col-6 mt-3">
                 <label for="provinces_id" class="form-label">Provinsi*</label>
@@ -560,11 +543,14 @@
               {{-- Perguruan Tinggi --}}
               <div class="col-6 mt-3">
                 <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi*</label>
-                <input 
-                  type="text" 
+                <select 
+                  class="form-select @error('perguruan_tinggi') is-invalid @enderror" 
                   name="perguruan_tinggi" 
-                  id="perguruan_tinggi" 
-                  class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
+                  id="perguruan_tinggi"  
+                  v-model="regencies_id">
+                  <option disabled value="">-- Pilih --</option>
+                  <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+                </select>
                 @error('perguruan_tinggi')
                   <span class="text-danger">
                     {{ $message }}

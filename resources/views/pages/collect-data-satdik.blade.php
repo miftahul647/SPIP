@@ -45,7 +45,7 @@
             data-bs-custom-class="custom-tooltip" 
             data-bs-title="Pimpinan perguruan tinggi, dosen, dan mahasiswa."
             type="button">
-            Template Perguruan Tinggi
+            Template Perguruan Tinggi 
           </a>
         </div>
       </div>
@@ -93,7 +93,7 @@
             <div class="card-body">
               <div class="col-6">
                 <label for="pilihan">Cari Sekolah berdasarkan</label>
-                <select class="form-select mt-3" v-model='pilihan' id="pilihan" onchange="showSearchInput()">
+                <select class="form-select mt-3" v-model='pilihan' id="pilihan">
                   <option value="NPSN" selected>NPSN</option>
                   <option value="level">Jenjang & Lokasi</option>
                 </select>
@@ -537,7 +537,7 @@
                   name="regency" 
                   id="regency_id"  
                   v-model="regencies_id">
-                  <option disabled value="">-- Pilih --</option>
+                  <option disabled value="">-- Pilih Kabupaten/Kota --</option>
                   <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                 </select>
                 @error('regency_id')
@@ -549,17 +549,21 @@
               {{-- Perguruan Tinggi --}}
               <div class="col-6 mt-3">
                 <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi*</label>
-                <input 
-                  type="text" 
+                <select 
+                  class="form-select @error('perguruan_tinggi') is-invalid @enderror" 
                   name="perguruan_tinggi" 
-                  id="perguruan_tinggi" 
-                  class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
+                  id="perguruan_tinggi"  
+                  v-model="college_id">
+                  <option disabled value="">-- Pilih Perguruan Tinggi --</option>
+                  <option v-for="college in colleges" :value="college.nama_perguruan">@{{ college.nama_perguruan }}</option>
+                </select>
                 @error('perguruan_tinggi')
                   <span class="text-danger">
                     {{ $message }}
                   </span>
                 @enderror
               </div>
+              
               {{-- Nama Narahubung --}}
               <div class="col-6 mt-3">
                 <label for="nama_narahubung" class="form-label">Nama Narahubung*</label>
@@ -624,17 +628,6 @@
     <script src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      function showSearchInput() {
-        var select = document.getElementById("pilihan");
-			  var selectedOption = select.options[select.selectedIndex].value;
-        if (selectedOption == "lainnya") {
-          document.getElementById("search-input").style.display = "block";
-        } else {
-          document.getElementById("search-input").style.display = "none";
-        }
-      }
-    </script>
-    <script>
       var locations = new Vue({
         el: "#locations",
         mounted() {
@@ -654,12 +647,14 @@
           jenjangs: null,
           schools: null,
           foreignSchools: null,
+          colleges: null,
           countries_id: '',
           provinces_id: '',
           regencies_id: '',
           jenjang_id: '',
           schools_id: '',
           foreignSchools_id: '',
+          college_id: '',
         },
         methods: {
           async changeItem() {
@@ -690,6 +685,14 @@
                 self.foreignSchools = response.data;
             })
           },
+          getCollegesData() {
+            var self = this;
+            axios.get('{{ url('api/college') }}/' + self.regencies_id)
+              .then(function (response) {
+                self.colleges = response.data;
+            })
+          },
+
           getProvincesData() {
             var self = this;
             axios.get('{{ route('api-provinces')}}')
@@ -725,8 +728,7 @@
             this.getRegenciesData();
           },
           regencies_id: function(val, oldVal) {
-            this.jenjang_id = null;
-            this.getJenjangData();
+            this.getCollegesData();
           },
           jenjang_id: function name(val, oldVal) {
             this.schools_id = null;

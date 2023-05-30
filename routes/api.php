@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\LocationController;
 use App\Http\Controllers\API\CountrySchoolController;
+use App\Http\Controllers\API\CollegeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +44,17 @@ Route::get('/jaga/sekolah/isian-sekolah/detail-by-npsn', [\App\Http\Controllers\
 Route::get('provinces', [LocationController::class, 'provinces'])->name('api-provinces');
 Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
 Route::get('jenjangs', [LocationController::class, 'jenjang'])->name('api-jenjangs');
-Route::get('schools/{regencies_id}/{jenjang_id}', [LocationController::class, 'schools'])->name('api-schools');
 
 //API COUNTRY
 Route::get('countries', [CountrySchoolController::class, 'countries'])->name('api-countries');
+
+//API SCHOOL
+Route::get('schools/{regencies_id}/{jenjang_id}', [LocationController::class, 'schools'])->name('api-schools');
+
+//API FOREIGN SCHOOL
 Route::get('foreign/{countries_id}', [CountrySchoolController::class, 'foreignSchools'])->name('api-foreign-schools');
+
+//API COLLEGES
+Route::get('college/{regencies_id}', [CollegeController::class, 'colleges'])->name('api-colleges');
+
 

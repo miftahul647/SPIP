@@ -20,7 +20,7 @@ class CollectionDataSatdik extends Controller
     public function downloadTemplatePopulasiSekolah() 
     {
         
-        $file = public_path("file/downloads/Format-Template-Data-Populasi-Sekolah.xlsx");
+        $file = public_path("file/downloads/Format-Template-Data-Populasi-Sekolah-update.xlsx");
         return response()->download($file);
     }
 

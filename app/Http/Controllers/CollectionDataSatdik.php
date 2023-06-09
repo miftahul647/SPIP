@@ -20,13 +20,13 @@ class CollectionDataSatdik extends Controller
     public function downloadTemplatePopulasiSekolah() 
     {
         
-        $file = public_path("file/downloads/Template-Data-Populasi-Sekolah-2023.xlsx");
+        $file = public_path("file/downloads/Format-Template-Data-Populasi-Sekolah-update.xlsx");
         return response()->download($file);
     }
 
     public function downloadTemplatePT()
     {
-        $filePath = public_path("file/downloads/Template-Data-Populasi-PT-2023.xlsx");
+        $filePath = public_path("file/downloads/Format-Template-Data-Populasi-PT.xlsx");
         return response()->download($filePath);
     }
 
@@ -50,20 +50,18 @@ class CollectionDataSatdik extends Controller
     {
         $this->validate($request, [
             'jenjang_pendidikan' => 'required',
-            'province_id' => 'required',
-            'regency_id' => 'required',
+            'provinsi' => 'required',
+            'kabupaten' => 'required',
             'satuan_pendidikan' => 'required',
-            'npsn' => 'required',
             'nama_pic' => 'required',
             'jabatan_pic' => 'required',
             'no_pic' => 'required',
             'document' => 'required|mimes:xls,xlsx|max:2048'
         ], [
             'jenjang_pendidikan.required' => 'Jenjang pendidikan wajib di isi',
-            'province_id.required' => 'Provinsi tidak boleh kosong',
-            'regency_id.required' => 'Kabupaten tidak boleh kosong',
+            'provinsi.required' => 'Provinsi tidak boleh kosong',
+            'kabupaten.required' => 'Kabupaten tidak boleh kosong',
             'satuan_pendidikan.required' => 'Satuan pendidikan tidak boleh kosong',
-            'npsn.required' => 'NPSN tidak boleh kosong',
             'nama_pic.required' => 'Nama PIC tidak boleh kosong',
             'jabatan_pic.required' => 'Jabatan PIC tidak boleh kosong',
             'no_pic.required' => 'No PIC tidak boleh kosong',
@@ -79,8 +77,8 @@ class CollectionDataSatdik extends Controller
 
         $localSchool = LocalSchool::create([
             'jenjang_pendidikan' => $request->jenjang_pendidikan,
-            'province_id' => $request->province_id,
-            'regency_id' => $request->regency_id,
+            'provinsi' => $request->provinsi,
+            'kabupaten' => $request->kabupaten,
             'satuan_pendidikan' => $request->satuan_pendidikan,
             'npsn' => $request->npsn,
             'nama_pic' => $request->nama_pic,

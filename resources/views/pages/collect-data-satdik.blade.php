@@ -108,7 +108,10 @@
                   placeholder="Masukkan NPSN">
               </div>
               <div class="mt-3" v-if="pilihan === 'NPSN'">
-                <button @click="changeItem" type="submit" class="btn btn-primary">Cari</button>
+                <button @click="changeItem" type="submit" class="btn btn-primary" onclick="loading()">
+                  <i class="fas fa-spinner fa-spin" style="display:none;"></i>
+                  <span class="btn-text">Cari</span>
+                </button>
               </div>
             </div>
           </div>
@@ -769,6 +772,12 @@
     })
     </script>
 
+    <script>
+      function loading() {
+        $(".btn .fa-spinner").show();
+        $(".btn .btn-text").html("Loading");
+      }
+    </script>
     <script>
       document.querySelectorAll('[data-bs-toggle="tooltip-pt"]')
     .forEach(tooltip => {

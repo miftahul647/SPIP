@@ -93,13 +93,14 @@
             <div class="card-body">
               <div class="col-6">
                 <label for="pilihan">Cari Sekolah berdasarkan</label>
-                <select class="form-select mt-3" v-model='pilihan' id="pilihan">
-                  <option value="NPSN" selected>NPSN</option>
-                  <option value="level">Jenjang & Lokasi</option>
+                <select class="form-select" id="pilihan" onchange="showSearchInput()">
+                  <option value="">Search by</option>
+                  <option value="NPSN">NPSN</option>
+                  <option value="jenjang">Jenjang & Lokasi</option>
                 </select>
               </div>
-              <div class="col-6 mt-4" v-if="pilihan === 'NPSN'">
-                <input
+              <div class="col-6 mt-4">
+                <input 
                   type="text" 
                   name="npsn" 
                   id="npsn"
@@ -117,7 +118,7 @@
               </div>
             </div>
           </div>
-          <div class="card mt-3" v-if="pilihan === 'NPSN'">
+          <div class="card mt-3">
             <div class="card-header fw-bold">
               Form Satuan Pendidikan Dalam Negeri
             </div>
@@ -135,11 +136,11 @@
                       :value="province" 
                       id="provinces_id"
                       >
-                      @error('province_id')
+                    @error('province_id')
                       <span class="text-danger">
                         {{ $message }}
                       </span>
-                      @enderror
+                    @enderror
                   </div>
                   {{-- Kabupaten/Kota --}}
                   <div class="col-6 mt-3">
@@ -152,11 +153,28 @@
                       id="kabupaten"
                       
                       >
-                      @error('regency_id')
+                    @error('regency_id')
                       <span class="text-danger">
                         {{ $message }}
                       </span>
-                      @enderror
+                    @enderror
+                  </div>
+                  {{-- Satuan Pendidikan --}}
+                  <div class="col-6 mt-3">
+                    <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
+                    <input 
+                      type="text" 
+                      class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
+                      name="satuan_pendidikan" 
+                      :value="satuanPendidikan" 
+                      id="satuan_pendidikan"
+                      
+                      >
+                    @error('satuan_pendidikan')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
                   </div>
                   {{-- Jenjang Pendidikan --}}
                   <div class="col-6 mt-3">
@@ -175,23 +193,6 @@
                       </span>
                     @enderror
                   </div>
-                  {{-- Satuan Pendidikan --}}
-                  <div class="col-6 mt-3">
-                    <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
-                    <input 
-                      type="text" 
-                      class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
-                      name="satuan_pendidikan" 
-                      :value="satuanPendidikan" 
-                      id="satuan_pendidikan"
-                      
-                      >
-                      @error('satuan_pendidikan')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                      @enderror
-                  </div>
                   {{-- NPSN --}}
                   <div class="col-6 mt-3">
                     <label for="npsn" class="form-label">NPSN</label>
@@ -239,7 +240,7 @@
                   </div>
                   {{-- Upload Document --}}
                   <div class="col-6 mt-3">
-                    <label for="document" class="form-label">Upload File Excel*</label>
+                    <label for="document" class="form-label">Upload Document*</label>
                     <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                     @error('document')
                       <span class="text-danger">
@@ -248,152 +249,7 @@
                     @enderror
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Kirim</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="card mt-3" v-if="pilihan === 'level'">
-            <div class="card-header fw-bold">
-              Form Satuan Pendidikan Dalam Negeri
-            </div>
-            <div class="card-body">
-              <form action="{{ route('store-school') }}" method="POST" enctype="multipart/form-data" >
-                @csrf
-                <div class="">
-                  {{-- Provinsi --}}
-                  <div class="col-6">
-                    <label for="provinces_id" class="form-label">Provinsi*</label>
-                    <select
-                      class="form-select" 
-                      name="provinsi" 
-                      id="provinces_id"
-                      v-model="provinces_id">
-                      <option disabled value="">-- Pilih Provinsi --</option>
-                      <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                    </select>
-                    @error('provinsi')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- Kabupaten/Kota --}}
-                  <div class="col-6 mt-3">
-                    <label for="kabupaten" class="form-label">Kabupaten/kota*</label>
-                    <select
-                      class="form-select" 
-                      name="kabupaten" 
-                      id="kabupaten"
-                      v-model="regencies_id">
-                      <option disabled value="">-- Pilih Kabupaten --</option>
-                      <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
-                    </select>
-                    @error('kabupaten')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- Jenjang Pendidikan --}}
-                  <div class="col-6 mt-3">
-                    <label for="level" class="form-label">Jenjang*</label>
-                    <select 
-                      class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
-                      name="jenjang_pendidikan" 
-                      id="level"
-                      v-model="jenjang_id"
-                      >
-                      <option disabled value="" selected >-- Pilih Jenjang --</option>
-                      <option v-for="jenjang in jenjangs" :value="jenjang.id">@{{ jenjang.nama_jenjang }}</option>
-                    </select>
-                    @error('jenjang_pendidikan')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- Satuan Pendidikan --}}
-                  <div class="col-6 mt-3">
-                    <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
-                    <select 
-                      class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
-                      name="satuan_pendidikan" 
-                      id="satuan_pendidikan"
-                      >
-                      <option value="">-- Pilih Pendidikan --</option>
-                      <option v-for="school in schools" :value="school.nama_sekolah">@{{ school.nama_sekolah }}</option>
-                    </select>
-                    @error('satuan_pendidikan')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- NPSN --}}
-                  <div class="col-6 mt-3">
-                    <label for="npsn" class="form-label">NPSN</label>
-                    <input 
-                      type="text" 
-                      name="npsn" 
-                      id="npsn"
-                      class="form-control @error('npsn') is-invalid @enderror" 
-                      placeholder="Masukkan NPSN jika NPSN pada pilihan di atas tidak sesuai">
-                      @error('npsn')
-                        <span class="text-danger">
-                          {{ $message }}
-                        </span>
-                      @enderror
-                  </div>
-                  {{-- Nama Narahubung --}}
-                  <div class="col-6 mt-3">
-                    <label for="nama_pic" class="form-label">Nama Narahubung*</label>
-                    <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
-                    @error('nama_pic')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- Jabatan Narahubung --}}
-                  <div class="col-6 mt-3">
-                    <label for="jabatan_pic" class="form-label">Jabatan Narahubung*</label>
-                    <input type="text" name="jabatan_pic" id="jabatan_pic" class="form-control @error('jabatan_pic') is-invalid @enderror" placeholder="">
-                    @error('jabatan_pic')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- Contact Narahubung --}}
-                  <div class="col-6 mt-3">
-                    <label for="no_pic" class="form-label">Contact Narahubung*</label>
-                    <input type="number" name="no_pic" id="no_pic" class="form-control @error('no_pic') is-invalid @enderror" placeholder="">
-                    @error('no_pic')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  {{-- Upload Document --}}
-                  <div class="col-6 mt-3">
-                    <label for="document" class="form-label">Upload file excel*</label>
-                    <input 
-                      type="file" 
-                      name="document" 
-                      id="document" 
-                      class="form-control @error('document') is-invalid @enderror"
-                      placeholder="upload fle excel"
-                      >
-                    @error('document')
-                      <span class="text-danger">
-                        {{ $message }}
-                      </span>
-                    @enderror
-                  </div>
-                  <div class="mt-3">
-                    <button type="submit" class="btn btn-primary">Kirim</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </form>
@@ -443,7 +299,7 @@
                 <select 
                   class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
                   name="satuan_pendidikan" 
-                  id="satuan_pendidikan"  
+                  id="satuan_pendidikan" 
                   v-model="foreignSchools_id">
                   <option disabled value="">-- Pilih --</option>
                   <option v-for="foreign in foreignSchools" :value="foreign.nama_sekolah">@{{ foreign.nama_sekolah }}</option>
@@ -496,7 +352,7 @@
                 @enderror --}}
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload File Excel*</label>
+                <label for="document" class="form-label">Upload Document</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 {{-- @error('document')
                   <span class="text-danger">
@@ -505,7 +361,7 @@
                 @enderror --}}
               </div>
               <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </form>
@@ -517,6 +373,23 @@
               <h5 class="title">
                 Form Perguruan Tinggi
               </h5>
+              {{-- Jenjang Pendidikan --}}
+              <div class="col-6 mt-3">
+                <label for="selectJenjang" class="form-label">Jenjang pendidikan*</label>
+                <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
+                  name="jenjang_pendidikan" id="selectJenjang" v-model="jenjang">
+                  <option value="">Pilih jenjang</option>
+                  <option value="sd">SD</option>
+                  <option value="smp">SMP</option>
+                  <option value="SMA">SMA</option>
+                  <option value="PT">PERGURUAN TINGGI</option>
+                </select>
+                @error('jenjang_pendidikan')
+                  <span class="text-danger">
+                    {{ $message }}
+                  </span>
+                @enderror
+              </div>
               {{-- Provinsi --}}
               <div class="col-6 mt-3">
                 <label for="provinces_id" class="form-label">Provinsi*</label>
@@ -542,7 +415,7 @@
                   name="regency" 
                   id="regency_id"  
                   v-model="regencies_id">
-                  <option disabled value="">-- Pilih Kabupaten/Kota --</option>
+                  <option disabled value="">-- Pilih --</option>
                   <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                 </select>
                 @error('regency_id')
@@ -554,21 +427,17 @@
               {{-- Perguruan Tinggi --}}
               <div class="col-6 mt-3">
                 <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi*</label>
-                <select 
-                  class="form-select @error('perguruan_tinggi') is-invalid @enderror" 
+                <input 
+                  type="text" 
                   name="perguruan_tinggi" 
-                  id="perguruan_tinggi"  
-                  v-model="college_id">
-                  <option disabled value="">-- Pilih Perguruan Tinggi --</option>
-                  <option v-for="college in colleges" :value="college.nama_perguruan">@{{ college.nama_perguruan }}</option>
-                </select>
+                  id="perguruan_tinggi" 
+                  class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
                 @error('perguruan_tinggi')
                   <span class="text-danger">
                     {{ $message }}
                   </span>
                 @enderror
               </div>
-              
               {{-- Nama Narahubung --}}
               <div class="col-6 mt-3">
                 <label for="nama_narahubung" class="form-label">Nama Narahubung*</label>
@@ -597,7 +466,7 @@
                 @enderror
               </div>
               <div class="col-6 mt-3">
-                <label for="no_narahubung" class="form-label">Contact Narahubung*</label>
+                <label for="no_narahubung" class="form-label">Nomor/Wa Narahubung*</label>
                 <input 
                   type="number" 
                   name="no_narahubung" 
@@ -610,7 +479,7 @@
                 @enderror
               </div>
               <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload File Excel*</label>
+                <label for="document" class="form-label">Upload Document*</label>
                 <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
                 @error('document')
                   <span class="text-danger">
@@ -619,12 +488,13 @@
                 @enderror
               </div>
               <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </form>
         </div>
       </div>
+
     </div>
   </div>
 

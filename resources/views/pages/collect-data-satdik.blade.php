@@ -108,8 +108,13 @@
                   class="form-control" 
                   placeholder="Masukkan NPSN">
               </div>
-              <div class="mt-3">
-                <button @click="changeItem" type="submit" class="btn btn-primary">Cari</button>
+              <div class="mt-3" v-if="pilihan === 'NPSN'">
+                <div>
+                  <button @click="changeItem" :disabled="isLoading" type="submit" class="btn btn-primary">
+                    <span v-if="isLoading">Loading...</span>
+                    <span v-else>Cari</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -525,6 +530,8 @@
           schools_id: '',
           foreignSchools_id: '',
           college_id: '',
+
+          isLoading: false,
         },
         methods: {
           async changeItem() {
@@ -540,6 +547,12 @@
             this.kabupaten = kabupaten
             this.satuanPendidikan = satuanPendidikan
             this.jenjang = jenjang
+
+            this.isLoading = true;
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log( 'hasil pencarian' );
+            }, 1000);
           },
           getCountriesData() {
             var self = this;

@@ -8,6 +8,8 @@ use App\Http\Controllers\CollectionDataSatdik;
 use App\Http\Controllers\InternationalSchoolController;
 use App\Http\Controllers\CollegesController;
 
+//SPIP
+use App\Http\Controllers\Spip\SpipController;
 
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
@@ -49,8 +51,10 @@ Route::post('/survey/college', [CollegesController::class, 'store'])->name('coll
 Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePopulasiSekolah'])->name('download-template-sekolah');
 Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');
 
+Route::get('/data-spip', [SpipController::class, 'index'])->name('spip');
 
 Route::prefix('admin')
+    ->middleware(['auth', 'admin'])
     ->group(function() {
         Route::get('/', [DashbboardController::class, 'index'])->name('admin');
         Route::prefix('monitoring')

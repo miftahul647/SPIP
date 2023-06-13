@@ -108,10 +108,12 @@
                   placeholder="Masukkan NPSN">
               </div>
               <div class="mt-3" v-if="pilihan === 'NPSN'">
-                <button @click="changeItem" type="submit" class="btn btn-primary" onclick="loading()">
-                  <i class="fas fa-spinner fa-spin" style="display:none;"></i>
-                  <span class="btn-text">Cari</span>
-                </button>
+                <div>
+                  <button @click="changeItem" :disabled="isLoading" type="submit" class="btn btn-primary">
+                    <span v-if="isLoading">Loading...</span>
+                    <span v-else>Cari</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -658,6 +660,8 @@
           schools_id: '',
           foreignSchools_id: '',
           college_id: '',
+
+          isLoading: false,
         },
         methods: {
           async changeItem() {
@@ -673,6 +677,12 @@
             this.kabupaten = kabupaten
             this.satuanPendidikan = satuanPendidikan
             this.jenjang = jenjang
+
+            this.isLoading = true;
+            setTimeout(() => {
+              this.isLoading = false;
+              console.log( 'hasil pencarian' );
+            }, 1000);
           },
           getCountriesData() {
             var self = this;
@@ -772,12 +782,6 @@
     })
     </script>
 
-    <script>
-      function loading() {
-        $(".btn .fa-spinner").show();
-        $(".btn .btn-text").html("Loading");
-      }
-    </script>
     <script>
       document.querySelectorAll('[data-bs-toggle="tooltip-pt"]')
     .forEach(tooltip => {

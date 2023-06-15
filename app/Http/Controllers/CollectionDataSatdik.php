@@ -72,7 +72,8 @@ class CollectionDataSatdik extends Controller
         $path = 'public/documents/';
         // upload document
         $document = $request->file('document');
-        $nama_document = time().'_'.$document->getClientOriginalName();
+        $nama_sekolah = $request->satuan_pendidikan;
+        $nama_document = $nama_sekolah.'_'.$document->getClientOriginalName();
         $document->storePubliclyAs($path, $nama_document);
 
         $localSchool = LocalSchool::create([

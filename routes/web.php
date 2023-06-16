@@ -52,6 +52,7 @@ Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePo
 Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');
 
 Route::get('/data-spip', [SpipController::class, 'index'])->name('spip');
+Route::get('/data-spip/documentExcel/download/{id}', [SpipController::class, 'downloadExcel'])->name('download-doc');
 
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])

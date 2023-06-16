@@ -12,7 +12,7 @@
         </div>
         <div>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Unduh Template Excel</a>
+                    class="fas fa-download fa-sm text-white-50"></i> Unduh Data Populasi</a>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Unduh Template Excel</a>
         </div>
@@ -35,7 +35,7 @@
                                     <th>Nama Narahubung</th>
                                     <th>Jabatan Narahubung</th>
                                     <th>Kontak Narahubung</th>
-                                    <th>File Excel</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -118,18 +118,21 @@
             ],
         ]
         var datatable = $('#crudTable').DataTable({
-            processing: true,
-            serverSide: true,
+            ajax: {
+                type: 'GET'
+            },
             columns: [
-                { data: 'provinsi', name: 'provinsi' },
-                { data: 'kabupaten', name: 'kabupaten' },
-                { data: 'jenjang', name: 'jenjang' },
-                { data: 'NPSN', name: 'NPSN' },
-                { data: 'satuan_pendidikan', name: 'satuan pendidikan' },
-                { data: 'nama_pic', name: 'nama narahubung' },
-                { data: 'jabatan_pic', name: 'jabatan narahubung' },
-                { data: 'no_pic', name: 'kontak narahubung' },
-                { data: 'document', name: 'file excel' }
+                { data: 'provinsi' },
+                { data: 'kabupaten' },
+                { data: 'jenjang' },
+                { data: 'NPSN' },
+                { data: 'satuan_pendidikan' },
+                { data: 'nama_pic' },
+                { data: 'jabatan_pic' },
+                { data: 'no_pic' },
+                { 
+                    data: 'download', 
+                }
             ]
         })
     </script>

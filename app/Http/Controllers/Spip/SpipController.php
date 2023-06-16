@@ -17,14 +17,38 @@ class SpipController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $reportSekolah = ViewReportSekolah::get()
-                ->toArray();
+            $reportSekolah = ViewReportSekolah::query();
 
-            return DataTables::of($reportSekolah)
-                ->make();
+            return DataTables::eloquent($reportSekolah)
+                ->addColumn('download', function($item) {
+                    return '
+                    <div class="btn-group">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                type="button" id="action"
+                                    data-toggle="dropdown" 
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Aksi
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="action">
+                                <a class="dropdown-item" href="' . route('download-doc', $item['id']) . '">
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>';
+                })
+                ->rawColumns(['download'])
+                ->toJson();
         }
         // dd($reportSekolah);
         return view('pages.spip.index');
+    }
+    // Download document
+    public function downloadExcel($id) {
+        $document_uploads = ViewReportSekolah::where('id', $id)->first();
+        return dd($document_uploads->document);
     }
 
     /**

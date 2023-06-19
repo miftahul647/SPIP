@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ViewReportSekolah;
 use Yajra\DataTables\Facades\DataTables;
+use App\Exports\ReportSekolahExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SpipLocalSchoolController extends Controller
 {
@@ -51,6 +53,12 @@ class SpipLocalSchoolController extends Controller
         $filePath = public_path("storage/documents/{$document_uploads->document}");
         return response()->download($filePath); 
         // return dd($document_uploads->document);
+    }
+
+    // Export data to excel
+    public function export() 
+    {
+        return Excel::download(new ReportSekolahExport, 'report_sekolah_terbaru.xlsx');
     }
 
     /**

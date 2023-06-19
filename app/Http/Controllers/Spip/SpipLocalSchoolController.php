@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ViewReportSekolah;
 use Yajra\DataTables\Facades\DataTables;
 
-class SpipController extends Controller
+class SpipLocalSchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,12 +43,14 @@ class SpipController extends Controller
                 ->toJson();
         }
         // dd($reportSekolah);
-        return view('pages.spip.index');
+        return view('pages.spip.LocalSchool.index');
     }
     // Download document
     public function downloadExcel($id) {
         $document_uploads = ViewReportSekolah::where('id', $id)->first();
-        return dd($document_uploads->document);
+        $filePath = public_path("storage/documents/{$document_uploads->document}");
+        return response()->download($filePath); 
+        // return dd($document_uploads->document);
     }
 
     /**

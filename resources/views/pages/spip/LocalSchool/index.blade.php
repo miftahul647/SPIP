@@ -20,7 +20,7 @@
 
     {{-- Content row --}}
     <div class="row">
-        <div class="col-xl-12 col-md-12 col-sm-12">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -49,74 +49,7 @@
 
 @push('addon-script')
     <script>
-        var dataSet = [
-            [
-                'DKI JAKARTA',
-                'KOTA JAKARTA SELATAN',
-                'SMA/SMK',
-                '1800479',
-                'SMKS PEMBANGUNAN KALIANDA',
-                'JORKE',
-                'KEPALA SEKOLAH',
-                '085882650487',
-                '1684457660_Template Data Populasi Sekolah test kedua.xlsx'
-            ],
-            [
-                'KALIMANTAN TIMUR',
-                'KOTA SAMARINDA',
-                'SMA/SMK',
-                '30401063',
-                'SMAS KATOLIK W. R. SOEPRATMAN',
-                'PRIMBA',
-                'KEPALA SEKOLAH',
-                '085882650487',
-                '1684457660_Template Data Populasi Sekolah test kedua.xlsx'
-            ],
-            [
-                'DKI JAKARTA',
-                'KOTA JAKARTA SELATAN',
-                'SMA/SMK',
-                '1800479',
-                'SMKS PEMBANGUNAN KALIANDA',
-                'JORKE',
-                'KEPALA SEKOLAH',
-                '085882650487',
-                '1684457660_Template Data Populasi Sekolah test kedua.xlsx'
-            ],
-            [
-                'DKI JAKARTA',
-                'KOTA JAKARTA SELATAN',
-                'SMA/SMK',
-                '1800479',
-                'SMKS PEMBANGUNAN KALIANDA',
-                'JORKE',
-                'KEPALA SEKOLAH',
-                '085882650487',
-                '1684457660_Template Data Populasi Sekolah test kedua.xlsx'
-            ],
-            [
-                'DKI JAKARTA',
-                'KOTA JAKARTA SELATAN',
-                'SMA/SMK',
-                '1800479',
-                'SMKS PEMBANGUNAN KALIANDA',
-                'JORKE',
-                'KEPALA SEKOLAH',
-                '085882650487',
-                '1684457660_Template Data Populasi Sekolah test kedua.xlsx'
-            ],
-            [
-                'DKI JAKARTA',
-                'KOTA JAKARTA SELATAN',
-                'SMA/SMK',
-                '1800479',
-                'SMKS PEMBANGUNAN KALIANDA',
-                'JORKE',
-                'KEPALA SEKOLAH',
-                '085882650487',
-                '1684457660_Template Data Populasi Sekolah test kedua.xlsx'
-            ],
-        ]
+    
         var datatable = $('#crudTable').DataTable({
             ajax: {
                 type: 'GET'

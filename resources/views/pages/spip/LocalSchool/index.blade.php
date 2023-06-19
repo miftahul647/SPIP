@@ -11,8 +11,11 @@
             <h1 class="h3 mb-0 text-gray-800">Data Peserta SPIP</h1>
         </div>
         <div>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Unduh Data Populasi</a>
+            <a 
+                href="{{ route('download-excel') }}" 
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i> Unduh Data Populasi
+            </a>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Unduh Template Excel</a>
         </div>

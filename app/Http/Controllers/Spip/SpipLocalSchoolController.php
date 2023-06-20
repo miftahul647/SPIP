@@ -8,6 +8,9 @@ use App\Models\ViewReportSekolah;
 use Yajra\DataTables\Facades\DataTables;
 use App\Exports\ReportSekolahExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
+use File;
 
 class SpipLocalSchoolController extends Controller
 {
@@ -59,6 +62,24 @@ class SpipLocalSchoolController extends Controller
     public function export() 
     {
         return Excel::download(new ReportSekolahExport, 'report_sekolah_terbaru.xlsx');
+    }
+
+    //export document to zip
+    public function exportToZip()
+    {
+        $zip = new ZipArchive;
+        $fileName = 'upload_excel_terbaru.zip';
+        if($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = File::files(public_path('storage/documents'));
+            foreach($files as $key => $value)
+            {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+            }
+            $zip->close();
+        } 
+        return response()->download(public_path($fileName));
     }
 
     /**

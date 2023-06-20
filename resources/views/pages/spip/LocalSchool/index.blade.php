@@ -16,8 +16,11 @@
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Unduh Data Populasi
             </a>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Unduh Template Excel</a>
+            <a 
+                href="{{ route('download-zip') }}" 
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-download fa-sm text-white-50"></i> Unduh Template Excel
+            </a>
         </div>
     </div>
 

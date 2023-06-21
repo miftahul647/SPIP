@@ -509,131 +509,121 @@
           </form>
         </div>
         <div class="tab-pane fade" id="perguruan-tinggi" role="tabpanel" aria-labelledby="contact-tab">
-          <form action="{{ route('college') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mt-4">
-              <h5 class="title">
-                Form Perguruan Tinggi
-              </h5>
-              {{-- Jenjang Pendidikan --}}
-              <div class="col-6 mt-3">
-                <label for="selectJenjang" class="form-label">Jenjang pendidikan*</label>
-                <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
-                  name="jenjang_pendidikan" id="selectJenjang" v-model="jenjang">
-                  <option value="">Pilih jenjang</option>
-                  <option value="sd">SD</option>
-                  <option value="smp">SMP</option>
-                  <option value="SMA">SMA</option>
-                  <option value="PT">PERGURUAN TINGGI</option>
-                </select>
-                @error('jenjang_pendidikan')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              {{-- Provinsi --}}
-              <div class="col-6 mt-3">
-                <label for="provinces_id" class="form-label">Provinsi*</label>
-                <select 
-                  class="form-select @error('province_id') is-invalid @enderror" 
-                  id="province_id" 
-                  name="province" 
-                  v-model="provinces_id">
-                  <option disabled value="">-- Pilih Provinsi --</option>
-                  <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                </select>
-                @error('province_id')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              {{-- Kabupaten --}}
-              <div class="col-6 mt-3">
-                <label for="regency_id" class="form-label">Kabupaten/Kota*</label>
-                <select 
-                  class="form-select @error('regency_id') is-invalid @enderror" 
-                  name="regency" 
-                  id="regency_id"  
-                  v-model="regencies_id">
-                  <option disabled value="">-- Pilih --</option>
-                  <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
-                </select>
-                @error('regency_id')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              {{-- Perguruan Tinggi --}}
-              <div class="col-6 mt-3">
-                <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi*</label>
-                <input 
-                  type="text" 
-                  name="perguruan_tinggi" 
-                  id="perguruan_tinggi" 
-                  class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
-                @error('perguruan_tinggi')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              {{-- Nama Narahubung --}}
-              <div class="col-6 mt-3">
-                <label for="nama_narahubung" class="form-label">Nama Narahubung*</label>
-                <input 
-                  type="text"
-                  name="nama_narahubung" 
-                  id="nama_narahubung" 
-                  class="form-control @error('nama_narahubung') is-invalid @enderror" placeholder="">
-                @error('nama_narahubung')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              <div class="col-6 mt-3">
-                <label for="jabatan_narahubung" class="form-label">Jabatan Narahubung*</label>
-                <input 
-                  type="text" 
-                  name="jabatan_narahubung" 
-                  id="jabatan_narahubung" 
-                  class="form-control @error('jabatan_narahubung') is-invalid @enderror" placeholder="">
-                @error('jabatan_narahubung')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              <div class="col-6 mt-3">
-                <label for="no_narahubung" class="form-label">Nomor/Wa Narahubung*</label>
-                <input 
-                  type="number" 
-                  name="no_narahubung" 
-                  id="no_narahubung" 
-                  class="form-control @error('no_narahubung') is-invalid @enderror" placeholder="">
-                @error('no_narahubung')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload Document*</label>
-                <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
-                @error('document')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror
-              </div>
-              <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+          <div class="card mt-3">
+            <div class="card-header fw-bold">
+              Form Perguruan Tinggi
             </div>
-          </form>
+            <div class="card-body">
+              <form action="{{ route('college') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div>
+                  {{-- Provinsi --}}
+                  <div class="col-6">
+                    <label for="provinces_id" class="form-label">Provinsi*</label>
+                    <select 
+                      class="form-select @error('province') is-invalid @enderror" 
+                      id="province_id" 
+                      name="province" 
+                      v-model="provinces_id">
+                      <option disabled value="">-- Pilih Provinsi --</option>
+                      <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                    </select>
+                    @error('province')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  {{-- Kabupaten --}}
+                  <div class="col-6 mt-3">
+                    <label for="regency_id" class="form-label">Kabupaten/Kota*</label>
+                    <select 
+                      class="form-select @error('regency') is-invalid @enderror" 
+                      name="regency" 
+                      id="regency_id"  
+                      v-model="regencies_id">
+                      <option disabled value="">-- Pilih Kabupaten --</option>
+                      <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
+                    </select>
+                    @error('regency')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  {{-- Perguruan Tinggi --}}
+                  <div class="col-6 mt-3">
+                    <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi*</label>
+                    <select 
+                      class="form-select @error('perguruan_tinggi') is-invalid @enderror" 
+                      name="perguruan_tinggi" 
+                      id="perguruan_tinggi"  
+                      v-model="college_id">
+                      <option disabled value="">-- Pilih Perguruan Tinggi --</option>
+                      <option v-for="college in colleges" :value="college.nama_perguruan">@{{ college.nama_perguruan }}</option>
+                    </select>
+                    @error('perguruan_tinggi')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  {{-- Nama Narahubung --}}
+                  <div class="col-6 mt-3">
+                    <label for="nama_narahubung" class="form-label">Nama Narahubung*</label>
+                    <input 
+                      type="text"
+                      name="nama_narahubung" 
+                      id="nama_narahubung" 
+                      class="form-control @error('nama_narahubung') is-invalid @enderror" placeholder="">
+                    @error('nama_narahubung')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="col-6 mt-3">
+                    <label for="jabatan_narahubung" class="form-label">Jabatan Narahubung*</label>
+                    <input 
+                      type="text" 
+                      name="jabatan_narahubung" 
+                      id="jabatan_narahubung" 
+                      class="form-control @error('jabatan_narahubung') is-invalid @enderror" placeholder="">
+                    @error('jabatan_narahubung')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="col-6 mt-3">
+                    <label for="no_narahubung" class="form-label">Contact Narahubung*</label>
+                    <input 
+                      type="text" 
+                      name="no_narahubung" 
+                      id="no_narahubung" 
+                      class="form-control @error('no_narahubung') is-invalid @enderror" placeholder="">
+                    @error('no_narahubung')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="col-6 mt-3">
+                    <label for="document" class="form-label">Upload Document*</label>
+                    <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
+                    @error('document')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror
+                  </div>
+                  <div class="mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 

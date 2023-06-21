@@ -34,13 +34,31 @@ class CollegesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // $getRequestAll = $request->all();
-        // dd($getRequestAll);
+    {   
+        $this->validate($request, [
+            'province' => 'required',
+            'regency' => 'required',
+            'perguruan_tinggi' => 'required',
+            'nama_narahubung' => 'required',
+            'jabatan_narahubung' => 'required',
+            'no_narahubung' => 'required',
+            'document' => 'required|mimes:xls,xlsx|max:2048'
+        ], [
+            'jenjang_pendidikan.required' => 'Jenjang pendidikan wajib di isi',
+            'provinsi.required' => 'Provinsi tidak boleh kosong',
+            'kabupaten.required' => 'Kabupaten tidak boleh kosong',
+            'satuan_pendidikan.required' => 'Satuan pendidikan tidak boleh kosong',
+            'nama_narahubung.required' => 'Nama PIC tidak boleh kosong',
+            'jabatan_narahubung.required' => 'Jabatan PIC tidak boleh kosong',
+            'no_narahubung.required' => 'No PIC tidak boleh kosong',
+            'document.required' => 'Document tidak boleh kosong',
+            'document.mimes' => 'Document berbentuk xls atau xlsx',
+        ]);
         $path = 'public/documents/';
         // upload document
         $document = $request->file('document');
-        $nama_document = time().'_'.$document->getClientOriginalName();
+        $nama_pt = $request->perguruan_tinggi;
+        $nama_document = $nama_pt.'_'.$document->getClientOriginalName();
         $document->storePubliclyAs($path, $nama_document);
 
         $colleges = Colleges::create([

@@ -10,6 +10,7 @@ use App\Http\Controllers\CollegesController;
 
 //SPIP
 use App\Http\Controllers\Spip\SpipLocalSchoolController;
+use App\Http\Controllers\Spip\SpipPerguruanTinggiController;
 
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
@@ -51,10 +52,14 @@ Route::post('/survey/college', [CollegesController::class, 'store'])->name('coll
 Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePopulasiSekolah'])->name('download-template-sekolah');
 Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');
 
+// Sekolah dalam negri
 Route::get('/data-spip', [SpipLocalSchoolController::class, 'index'])->name('spip');
 Route::get('/data-spip/documentExcel/download/{id}', [SpipLocalSchoolController::class, 'downloadExcel'])->name('download-doc');
 Route::get('/data-spip/export', [SpipLocalSchoolController::class, 'export'])->name('download-excel');
 Route::get('/data-spip/zip', [SpipLocalSchoolController::class, 'exportToZip'])->name('download-zip');
+
+// Perguruan Tinggi
+Route::get('/data-spip-pt', [SpipPerguruanTinggiController::class, 'index'])->name('spip-pt');
 
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])

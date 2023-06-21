@@ -49,9 +49,27 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('spip') }}">
-                    <i class="fa-solid fa-database mx-1"></i>
-                    <span>SPIP</span></a>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa-solid fa-database"></i>
+                    <span>SPIP</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item {{ request()->is('data-spip') ? 'active' : '' }}"
+                            href="{{ route('spip') }}">
+                            Sekolah Dalam Negeri
+                        </a>
+                        <a class="collapse-item {{ request()->is('data-spip-pt') ? 'active' : '' }}"
+                            href="{{ route('spip-pt') }}">
+                            Perguruan Tinggi
+                        </a>
+                        <a class="collapse-item"
+                            href="">
+                            Sekolah Luar Negeri
+                        </a>
+                    </div>
+                </div>
             </li>
 
             <hr class="sidebar-divider d-none d-md-block">

@@ -55,28 +55,63 @@
                             Hi, {{ Auth::user()->name }}
                             <img src="/images/icon-user.png" alt="" class="rounded-circle ms-3 profile-picture" />
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href={{ route('admin') }} class="dropdown-item">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    Settings
+                        <?php
+                        if (Auth::user()->roles=== 'ADMIN') {
+                        ?>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href={{ route('admin') }} class="dropdown-item">Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('spip') }} class="dropdown-item">SPIP</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        Settings
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+
+                                </li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </ul>
+                        <?php
+                        } else if(Auth::user()->roles === 'USER') {
+                           ?>
+                           <ul class="dropdown-menu">
+                                <li>
+                                    <a href={{ route('spip') }} class="dropdown-item">SPIP</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        Settings
+                                    </a>
 
-                            </li>
-                            <li>
-                                <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
 
-                            </li>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </ul>
+                                </li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </ul>
+                           <?php 
+                        }
+                        ?>
+                        
                     </li>
                 </ul>
             @endauth

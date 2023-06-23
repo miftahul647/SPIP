@@ -52,15 +52,6 @@ Route::post('/survey/college', [CollegesController::class, 'store'])->name('coll
 Route::get('/downloadsekolah', [CollectionDataSatdik::class, 'downloadTemplatePopulasiSekolah'])->name('download-template-sekolah');
 Route::get('/downloadtemplatePT', [CollectionDataSatdik::class, 'downloadTemplatePT'])->name('download-template-pt');
 
-// Sekolah dalam negri
-Route::get('/data-spip', [SpipLocalSchoolController::class, 'index'])->name('spip');
-Route::get('/data-spip/documentExcel/download/{id}', [SpipLocalSchoolController::class, 'downloadExcel'])->name('download-doc');
-Route::get('/data-spip/export', [SpipLocalSchoolController::class, 'export'])->name('download-excel');
-Route::get('/data-spip/zip', [SpipLocalSchoolController::class, 'exportToZip'])->name('download-zip');
-
-// Perguruan Tinggi
-Route::get('/data-spip-pt', [SpipPerguruanTinggiController::class, 'index'])->name('spip-pt');
-
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function() {
@@ -72,6 +63,19 @@ Route::prefix('admin')
         });
         Route::get('/kegiatan-internal', [KegiatanInternalController::class, 'index'])->name('kegiatan');
         Route::get('/management-jejaring', [ManagementJejaringController::class, 'index'])->name('jejaring');
+});
+
+Route::prefix('admin-spip')
+    ->middleware(['auth'])
+    ->group(function() {
+        // Sekolah dalam negri
+        Route::get('/data-spip', [SpipLocalSchoolController::class, 'index'])->name('spip');
+        Route::get('/data-spip/documentExcel/download/{id}', [SpipLocalSchoolController::class, 'downloadExcel'])->name('download-doc');
+        Route::get('/data-spip/export', [SpipLocalSchoolController::class, 'export'])->name('download-excel');
+        Route::get('/data-spip/zip', [SpipLocalSchoolController::class, 'exportToZip'])->name('download-zip');
+
+        //Perguruan Tinggi
+        Route::get('/data-spip-pt', [SpipPerguruanTinggiController::class, 'index'])->name('spip-pt');
 });
 
 Auth::routes();

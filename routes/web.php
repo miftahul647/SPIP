@@ -68,8 +68,12 @@ Route::prefix('admin')
 Route::prefix('admin-spip')
     ->middleware(['auth'])
     ->group(function() {
+        Route::get('/', function() {
+            return redirect('/admin-spip/data-spip/all');
+        });
         // Sekolah dalam negri
-        Route::get('/data-spip', [SpipLocalSchoolController::class, 'index'])->name('spip');
+        Route::get('/data-spip/{jenjang}', [SpipLocalSchoolController::class, 'index'])->name('spip');
+        Route::any('/data/{jenjang}', [SpipLocalSchoolController::class, 'data']);
         Route::get('/data-spip/documentExcel/download/{id}', [SpipLocalSchoolController::class, 'downloadExcel'])->name('download-doc');
         Route::get('/data-spip/export', [SpipLocalSchoolController::class, 'export'])->name('download-excel');
         Route::get('/data-spip/zip', [SpipLocalSchoolController::class, 'exportToZip'])->name('download-zip');

@@ -63,7 +63,11 @@
                                     <a href={{ route('admin') }} class="dropdown-item">Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href={{ route('spip') }} class="dropdown-item">SPIP</a>
+                                    <a 
+                                        href="{{url('')}}/admin-spip/" 
+                                        class="dropdown-item">
+                                        SPIP
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">

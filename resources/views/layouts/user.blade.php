@@ -57,7 +57,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {{ request()->is('data-spip') ? 'active' : '' }}"
-                            href="{{ route('spip') }}">
+                            href="{{url('')}}/admin-spip/">
                             Sekolah Dalam Negeri
                         </a>
                         <a class="collapse-item {{ request()->is('data-spip-pt') ? 'active' : '' }}"
@@ -156,7 +156,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container">
+                <div class="container-fluid">
 
                     @yield('content')
 
@@ -214,23 +214,16 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"
         integrity="sha512-wV7Yj1alIZDqZFCUQJy85VN+qvEIly93fIQAN7iqDFCPEucLCeNFz4r35FCo9s6WrpdDQPi80xbljXB8Bjtvcg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('style/admin/jquery/jquery.easing.min.js') }}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('style/admin/jquery/jquery.easing.min.js') }}"></script>
+        
+        <!-- Custom scripts for all pages-->
+        <script src="{{ asset('style/admin/js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('style/admin/js/sb-admin-2.min.js') }}"></script>
 
-    <!-- Page level plugins -->
-    {{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}
-
-    <!-- Page level custom scripts -->
-    {{-- <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> --}}
 
     @stack('addon-script')
 </body>

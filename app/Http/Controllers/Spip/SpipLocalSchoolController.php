@@ -19,36 +19,26 @@ class SpipLocalSchoolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        if (request()->ajax()) {
-            $reportSekolah = ViewReportSekolah::query();
+    public function index(Request $request, $jenjang)
+    {   
+        $data ['jenjang'] = $jenjang;
+        
+        return view('pages.spip.LocalSchool.index', $data);
+    }
 
-            return DataTables::eloquent($reportSekolah)
-                ->addColumn('download', function($item) {
-                    return '
-                    <div class="btn-group">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
-                                type="button" id="action"
-                                    data-toggle="dropdown" 
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    Aksi
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="action">
-                                <a class="dropdown-item" href="' . route('download-doc', $item['id']) . '">
-                                    Download
-                                </a>
-                            </div>
-                        </div>
-                    </div>';
+    public function data(Request $request, $jenjang)
+    {   
+        $modelReportSekolah = ViewReportSekolah::query();
+        return DataTables::eloquent($modelReportSekolah)
+            ->filter(function ($query) {
+                    if (request()->get('filterJenjang')) {
+                        $query->where('jenjang', request('filterJenjang'));
+                    }
+                    if (request()->get('filterProvinsi')) {
+                        $query->where('provinsi', 'like', "%" . request('filterProvinsi') . "%");
+                    }
                 })
-                ->rawColumns(['download'])
-                ->toJson();
-        }
-        // dd($reportSekolah);
-        return view('pages.spip.LocalSchool.index');
+            ->toJson();
     }
     // Download document
     public function downloadExcel($id) {

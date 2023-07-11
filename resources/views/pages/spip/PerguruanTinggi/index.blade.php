@@ -12,12 +12,12 @@
         </div>
         <div>
             <a 
-                href="" 
+                href="{{ route('download-excel-pt') }}" 
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Unduh Data Populasi
             </a>
             <a 
-                href="" 
+                href="{{ route('download-zip-pt') }}" 
                 class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i> Unduh Template Excel
             </a>
@@ -52,6 +52,7 @@
 @endsection
 
 @push('addon-script')
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script>
     
         var datatable = $('#crudTable').DataTable({

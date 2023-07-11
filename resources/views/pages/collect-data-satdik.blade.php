@@ -93,7 +93,7 @@
             <div class="card-body">
               <div class="col-6">
                 <label for="pilihan">Cari Sekolah berdasarkan</label>
-                <select class="form-select mt-3" v-model='pilihan' id="pilihan" onchange="showSearchInput()">
+                <select class="form-select mt-3" v-model='pilihan' id="pilihan">
                   <option value="NPSN">NPSN</option>
                   <option value="level">Jenjang & Lokasi</option>
                 </select>
@@ -128,7 +128,8 @@
                   {{-- Provinsi --}}
                   <div class="col-6">
                     <label for="provinces_id" class="form-label">Provinsi*</label>
-                    <input 
+                    <input
+                      disabled 
                       type="text" 
                       class="form-control @error('province_id') is-invalid @enderror" 
                       name="provinsi"
@@ -145,6 +146,7 @@
                   <div class="col-6 mt-3">
                     <label for="kabupaten" class="form-label">Kabupaten/kota*</label>
                     <input 
+                      disabled
                       type="text" 
                       class="form-control @error('regency_id') is-invalid @enderror" 
                       name="kabupaten"
@@ -161,7 +163,8 @@
                   {{-- Satuan Pendidikan --}}
                   <div class="col-6 mt-3">
                     <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
-                    <input 
+                    <input
+                      disabled 
                       type="text" 
                       class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
                       name="satuan_pendidikan" 
@@ -178,7 +181,8 @@
                   {{-- Jenjang Pendidikan --}}
                   <div class="col-6 mt-3">
                     <label for="jenjang" class="form-label">Jenjang*</label>
-                    <input 
+                    <input
+                      disabled 
                       type="text" 
                       class="form-control @error('jenjang_pendidikan') is-invalid @enderror" 
                       name="jenjang_pendidikan" 
@@ -668,7 +672,9 @@
         methods: {
           async changeItem() {
             const noNpsn = this.npsn
+            this.isLoading = true
             const { data } = await axios.get(`https://jaga.id/api/v5/sekolah?npsn=${noNpsn}`)
+            .finally(()=> (this.isLoading = false))
             
             const provinsi = data.data.result[0].provinsi
             const kabupaten = data.data.result[0].kota_kab
@@ -680,11 +686,6 @@
             this.satuanPendidikan = satuanPendidikan
             this.jenjang = jenjang
 
-            this.isLoading = true;
-            setTimeout(() => {
-              this.isLoading = false;
-              console.log( 'hasil pencarian' );
-            }, 1000);
           },
           getCountriesData() {
             var self = this;

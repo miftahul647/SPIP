@@ -75,11 +75,15 @@ Route::prefix('admin-spip')
         Route::get('/data-spip/{jenjang}', [SpipLocalSchoolController::class, 'index'])->name('spip');
         Route::any('/data/{jenjang}', [SpipLocalSchoolController::class, 'data']);
         Route::get('/data-spip/documentExcel/download/{id}', [SpipLocalSchoolController::class, 'downloadExcel'])->name('download-doc');
-        Route::get('/data-spip/export', [SpipLocalSchoolController::class, 'export'])->name('download-excel');
-        Route::get('/data-spip/zip', [SpipLocalSchoolController::class, 'exportToZip'])->name('download-zip');
+        Route::get('/data-spip/export/excel', [SpipLocalSchoolController::class, 'export'])->name('download-excel');
+        Route::get('/data-spip/export/zip', [SpipLocalSchoolController::class, 'exportToZip'])->name('download-zip');
 
         //Perguruan Tinggi
         Route::get('/data-spip-pt', [SpipPerguruanTinggiController::class, 'index'])->name('spip-pt');
+        Route::get('/data-spip-pt/export/excel', [SpipPerguruanTinggiController::class, 'export'])->name('download-excel-pt');
+        Route::get('/data-spip-pt/export/zip', [SpipPerguruanTinggiController::class, 'exportToZip'])->name('download-zip-pt');
+        Route::get('/data-spip-pt/documentExcel/download/{id}', [SpipPerguruanTinggiController::class, 'downloadExcel'])->name('download-doc-pt');
+
 });
 
 Auth::routes();

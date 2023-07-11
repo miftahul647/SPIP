@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Spip;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ViewReportPerguruanTinggi;
+use App\Exports\ReportPerguruanTinggiExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
+use ZipArchive;
+use File;
 
 class SpipPerguruanTinggiController extends Controller
 {
@@ -32,7 +36,7 @@ class SpipPerguruanTinggiController extends Controller
                                     Aksi
                             </button>
                             <div class="dropdown-menu" aria-labelledby="action">
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="' . route('download-doc-pt', $item->id) . '">
                                     Download
                                 </a>
                             </div>
@@ -43,6 +47,38 @@ class SpipPerguruanTinggiController extends Controller
                 ->toJson();
         }
         return view("pages.spip.PerguruanTinggi.index");
+    }
+
+    // Download document
+    public function downloadExcel($id) {
+        $document_uploads = ViewReportPerguruanTinggi::where('id', $id)->first();
+        $filePath = public_path("storage/documents/{$document_uploads->document}");
+        return response()->download($filePath); 
+        // return dd($document_uploads->document);
+    }
+
+    // Export data to excel
+    public function export() 
+    {
+        return Excel::download(new ReportPerguruanTinggiExport, 'report_perguruan_tinggi_terbaru.xlsx');
+    }
+
+    //export document to zip
+    public function exportToZip()
+    {
+        $zip = new ZipArchive;
+        $fileName = 'data-excel-pt-terbaru.zip';
+        if($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        {
+            $files = File::files(public_path('storage/documents'));
+            foreach($files as $key => $value)
+            {
+                $relativeNameInZipFile = basename($value);
+                $zip->addFile($value, $relativeNameInZipFile);
+            }
+            $zip->close();
+        } 
+        return response()->download(public_path($fileName));
     }
 
     /**

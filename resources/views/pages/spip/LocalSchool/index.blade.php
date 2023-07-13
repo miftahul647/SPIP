@@ -59,6 +59,7 @@
                                     <th>Nama Narahubung</th>
                                     <th>Jabatan Narahubung</th>
                                     <th>Kontak Narahubung</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -163,6 +164,13 @@
                 },
                 {
                     "targets": 8,
+                    "class":"text-nowrap",
+                    "render": function(data, type, row, meta){
+                        return row.update_time;
+                    }
+                },
+                {
+                    "targets": 9,
                     "class":"text-nowrap",
                     "sortable": false,
                     "render": function(data, type, row, meta){

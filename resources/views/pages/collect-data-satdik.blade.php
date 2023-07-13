@@ -129,11 +129,11 @@
                   <div class="col-6">
                     <label for="provinces_id" class="form-label">Provinsi*</label>
                     <input
-                      disabled 
+                      readonly="true"
                       type="text" 
                       class="form-control @error('province_id') is-invalid @enderror" 
                       name="provinsi"
-                      :value="province" 
+                      :value ="province" 
                       id="provinces_id"
                       >
                     @error('province_id')
@@ -146,13 +146,12 @@
                   <div class="col-6 mt-3">
                     <label for="kabupaten" class="form-label">Kabupaten/kota*</label>
                     <input 
-                      disabled
+                      readonly="true"
                       type="text" 
                       class="form-control @error('regency_id') is-invalid @enderror" 
                       name="kabupaten"
                       :value="kabupaten"  
                       id="kabupaten"
-                      
                       >
                     @error('regency_id')
                       <span class="text-danger">
@@ -164,7 +163,7 @@
                   <div class="col-6 mt-3">
                     <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
                     <input
-                      disabled 
+                      readonly="true" 
                       type="text" 
                       class="form-control @error('satuan_pendidikan') is-invalid @enderror" 
                       name="satuan_pendidikan" 
@@ -182,7 +181,7 @@
                   <div class="col-6 mt-3">
                     <label for="jenjang" class="form-label">Jenjang*</label>
                     <input
-                      disabled 
+                      readonly="true" 
                       type="text" 
                       class="form-control @error('jenjang_pendidikan') is-invalid @enderror" 
                       name="jenjang_pendidikan" 
@@ -679,12 +678,14 @@
             const provinsi = data.data.result[0].provinsi
             const kabupaten = data.data.result[0].kota_kab
             const satuanPendidikan = `${data.data.result[0].npsn} - ${data.data.result[0].nama}`
-            const jenjang = data.data.result[0].bentuk_pendidikan
+            const jenjang = data.data.result[0].jenjang.nama_jenjang
 
             this.province = provinsi
             this.kabupaten = kabupaten
             this.satuanPendidikan = satuanPendidikan
             this.jenjang = jenjang
+
+            console.log(jenjang);
 
           },
           getCountriesData() {

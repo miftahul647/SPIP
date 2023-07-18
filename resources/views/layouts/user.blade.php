@@ -65,7 +65,7 @@
                             Perguruan Tinggi
                         </a>
                         <a class="collapse-item"
-                            href="">
+                            href="{{ route('spip-international') }}">
                             Sekolah Luar Negeri
                         </a>
                     </div>

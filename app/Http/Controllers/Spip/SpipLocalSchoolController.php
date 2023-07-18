@@ -37,6 +37,13 @@ class SpipLocalSchoolController extends Controller
                     if (request()->get('filterProvinsi')) {
                         $query->where('provinsi', 'like', "%" . request('filterProvinsi') . "%");
                     }
+
+                    if (request()->input('search.value')) {
+                        $query->where('satuan_pendidikan', 'like', "%" . request('search.value') . "%")
+                        ->orWhere('provinsi', 'like', "%" . request('search.value') . "%")
+                        ->orWhere('kabupaten', 'like', "%" . request('search.value') . "%")
+                        ->orWhere('NPSN', 'like', "%" . request('search.value') . "%");
+                    }
                 })
             ->toJson();
     }

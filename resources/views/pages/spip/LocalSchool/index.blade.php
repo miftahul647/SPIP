@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover scroll-horizontal-vertical w-100" style="width: 10%" id="crudTable">
+                        <table class="table table-hover stripe text-black" style="width: 10%" id="crudTable">
                             <thead>
                                 <tr>
                                     <th>Provinsi</th>
@@ -194,7 +194,7 @@
                     }
                 },
                 
-            ]
+            ],
         })
 
         $('#filter-jenjang').change(function(){

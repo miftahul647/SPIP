@@ -11,6 +11,7 @@ use App\Http\Controllers\CollegesController;
 //SPIP
 use App\Http\Controllers\Spip\SpipLocalSchoolController;
 use App\Http\Controllers\Spip\SpipPerguruanTinggiController;
+use App\Http\Controllers\Spip\SpipInternationalController;
 
 use App\Http\Controllers\Admin\DashbboardController;
 use App\Http\Controllers\Admin\MonitorAnggaranController;
@@ -84,9 +85,16 @@ Route::prefix('admin-spip')
         Route::get('/data-spip-pt/export/zip', [SpipPerguruanTinggiController::class, 'exportToZip'])->name('download-zip-pt');
         Route::get('/data-spip-pt/documentExcel/download/{id}', [SpipPerguruanTinggiController::class, 'downloadExcel'])->name('download-doc-pt');
 
+        // Sekolah Luar Negri
+        Route::get('/data-spip-international', [SpipInternationalController::class, 'index'])->name('spip-international');
+        Route::get('/data-spip-ln/export/excel', [SpipInternationalController::class, 'export'])->name('download-excel-ln');
+        Route::get('/data-spip-ln/documentExcel/download/{id}', [SpipInternationalController::class, 'downloadExcel'])->name('download-doc-ln');
+
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 // VIEW DARI API JAGA SEKOLAH
 // Route::get('/jaga/sekolah/jenjang-all', function() {

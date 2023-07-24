@@ -32,7 +32,7 @@ class SpipLocalSchoolController extends Controller
         return DataTables::eloquent($modelReportSekolah)
             ->filter(function ($query) {
                     if (request()->get('filterJenjang')) {
-                        $query->where('jenjang', request('filterJenjang'));
+                        $query->where('jenjang', 'like', "%" . request('filterJenjang') . "%");
                     }
                     if (request()->get('filterProvinsi')) {
                         $query->where('provinsi', 'like', "%" . request('filterProvinsi') . "%");

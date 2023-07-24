@@ -43,7 +43,7 @@
                                 <option value="" selected>-- Pilih Jenjang --</option>
                                 <option value="sd">SD</option>
                                 <option value="smp">SMP</option>
-                                <option value="sma/smk">SMA/SMK</option>
+                                <option value="sma">SMA</option>
                             </select>
                         </div>
                     </div>

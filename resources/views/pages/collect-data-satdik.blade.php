@@ -180,15 +180,15 @@
                   {{-- Jenjang Pendidikan --}}
                   <div class="col-6 mt-3">
                     <label for="jenjang" class="form-label">Jenjang*</label>
-                    <input
-                      readonly="true" 
-                      type="text" 
-                      class="form-control @error('jenjang_pendidikan') is-invalid @enderror" 
-                      name="jenjang_pendidikan" 
-                      :value="jenjang" 
-                      id="jenjang"
-                      
-                      >
+                    <select
+                      class="form-select @error('jenjang_pendidikan') is-invalid @enderror"
+                      name="jenjang_pendidikan"
+                      id="level"
+                      v-model="jenjang_id"
+                    >
+                      <option disabled value="">-- Pilih Jenjang --</option>
+                      <option v-for="jenjang in jenjangs" :value="jenjang.id">@{{ jenjang.nama_jenjang }}</option>
+                    </select>
                     @error('jenjang_pendidikan')
                       <span class="text-danger">
                         {{ $message }}
@@ -402,114 +402,116 @@
           </div>
         </div>
         <div class="tab-pane fade" id="internasional" role="tabpanel" aria-labelledby="internasional-tab">
-          <form action="{{ route('international-school') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mt-4">
-              <h5 class="title">
-                Form satuan pendidikan Luar Negeri
-              </h5>
-              <div class="col-6 mt-3">
-                <label for="jenjang_pendidikan" class="form-label">Jenjang pendidikan*</label>
-                <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
-                  name="jenjang_pendidikan" id="jenjang_pendidikan">
-                  <option value="">-- Pilih Jenjang --</option>
-                  <option value="sd">SD</option>
-                  <option value="smp">SMP</option>
-                  <option value="SMA">SMA</option>
-                </select>
-                {{-- @error('jenjang_pendidikan')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="negara" class="form-label">Negara*</label>
-                <select 
-                  class="form-select @error('negara') is-invalid @enderror" 
-                  id="negara" 
-                  name="country_id"
-                  v-model="countries_id" >
-                  <option disabled value="" selected>-- Pilih Negara --</option>
-                  <option v-for="country in countries" :value="country.id">@{{ country.name }}</option>
-                </select>
-                {{-- @error('negara')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
-                <select 
-                  class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
-                  name="satuan_pendidikan" 
-                  id="satuan_pendidikan" 
-                  v-model="foreignSchools_id">
-                  <option disabled value="">-- Pilih --</option>
-                  <option v-for="foreign in foreignSchools" :value="foreign.nama_sekolah">@{{ foreign.nama_sekolah }}</option>
-                </select>
-                {{-- @error('satuan_pendidikan')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="npsn" class="form-label">NPSN</label>
-                <input 
-                  type="text" 
-                  name="npsn" 
-                  id="npsn" 
-                  class="form-control @error('npsn') is-invalid @enderror" 
-                  placeholder="Masukkan NPSN jika NPSN pada pilihan di atas tidak sesuai">
-                  {{-- @error('npsn')
+          <div class="card mt-3">
+            <div class="card-header fw-bold">
+              Form Perguruan Tinggi
+            </div>
+            <div class="card-body">
+              <form action="{{ route('international-school') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="col-6">
+                  <label for="jenjang_pendidikan" class="form-label">Jenjang pendidikan*</label>
+                  <select class="form-select @error('jenjang_pendidikan') is-invalid @enderror" 
+                    name="jenjang_pendidikan" id="jenjang_pendidikan">
+                    <option value="">-- Pilih Jenjang --</option>
+                    <option value="sd">SD</option>
+                    <option value="smp">SMP</option>
+                    <option value="SMA">SMA</option>
+                  </select>
+                  {{-- @error('jenjang_pendidikan')
                     <span class="text-danger">
                       {{ $message }}
                     </span>
                   @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="nama_pic" class="form-label">Nama Narahubung*</label>
-                <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
-                {{-- @error('nama_pic')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="jabatan_pic" class="form-label">Jabatan Narahubung*</label>
-                <input type="text" name="jabatan_pic" id="jabatan_pic" class="form-control @error('jabatan_pic') is-invalid @enderror" placeholder="">
-                {{-- @error('jabatan_pic')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="no_pic" class="form-label">Contact Narahubung*</label>
-                <input type="number" name="no_pic" id="no_pic" class="form-control @error('no_pic') is-invalid @enderror" placeholder="">
-                {{-- @error('no_pic')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="col-6 mt-3">
-                <label for="document" class="form-label">Upload Document</label>
-                <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
-                {{-- @error('document')
-                  <span class="text-danger">
-                    {{ $message }}
-                  </span>
-                @enderror --}}
-              </div>
-              <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="negara" class="form-label">Negara*</label>
+                  <select 
+                    class="form-select @error('negara') is-invalid @enderror" 
+                    id="negara" 
+                    name="country_id"
+                    v-model="countries_id" >
+                    <option disabled value="" selected>-- Pilih Negara --</option>
+                    <option v-for="country in countries" :value="country.id">@{{ country.name }}</option>
+                  </select>
+                  {{-- @error('negara')
+                    <span class="text-danger">
+                      {{ $message }}
+                    </span>
+                  @enderror --}}
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="satuan_pendidikan" class="form-label">Satuan Pendidikan*</label>
+                  <select 
+                    class="form-select @error('satuan_pendidikan') is-invalid @enderror" 
+                    name="satuan_pendidikan" 
+                    id="satuan_pendidikan" 
+                    v-model="foreignSchools_id">
+                    <option disabled value="">-- Pilih --</option>
+                    <option v-for="foreign in foreignSchools" :value="foreign.nama_sekolah">@{{ foreign.nama_sekolah }}</option>
+                  </select>
+                  {{-- @error('satuan_pendidikan')
+                    <span class="text-danger">
+                      {{ $message }}
+                    </span>
+                  @enderror --}}
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="npsn" class="form-label">NPSN</label>
+                  <input 
+                    type="text" 
+                    name="npsn" 
+                    id="npsn" 
+                    class="form-control @error('npsn') is-invalid @enderror" 
+                    placeholder="Masukkan NPSN jika NPSN pada pilihan di atas tidak sesuai">
+                    {{-- @error('npsn')
+                      <span class="text-danger">
+                        {{ $message }}
+                      </span>
+                    @enderror --}}
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="nama_pic" class="form-label">Nama Narahubung*</label>
+                  <input type="text" name="nama_pic" id="nama_pic" class="form-control @error('nama_pic') is-invalid @enderror" placeholder="">
+                  {{-- @error('nama_pic')
+                    <span class="text-danger">
+                      {{ $message }}
+                    </span>
+                  @enderror --}}
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="jabatan_pic" class="form-label">Jabatan Narahubung*</label>
+                  <input type="text" name="jabatan_pic" id="jabatan_pic" class="form-control @error('jabatan_pic') is-invalid @enderror" placeholder="">
+                  {{-- @error('jabatan_pic')
+                    <span class="text-danger">
+                      {{ $message }}
+                    </span>
+                  @enderror --}}
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="no_pic" class="form-label">Contact Narahubung*</label>
+                  <input type="number" name="no_pic" id="no_pic" class="form-control @error('no_pic') is-invalid @enderror" placeholder="">
+                  {{-- @error('no_pic')
+                    <span class="text-danger">
+                      {{ $message }}
+                    </span>
+                  @enderror --}}
+                </div>
+                <div class="col-6 mt-3">
+                  <label for="document" class="form-label">Upload Document</label>
+                  <input type="file" name="document" id="document" class="form-control @error('document') is-invalid @enderror">
+                  {{-- @error('document')
+                    <span class="text-danger">
+                      {{ $message }}
+                    </span>
+                  @enderror --}}
+                </div>
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
         <div class="tab-pane fade" id="perguruan-tinggi" role="tabpanel" aria-labelledby="contact-tab">
           <div class="card mt-3">
@@ -678,14 +680,10 @@
             const provinsi = data.data.result[0].provinsi
             const kabupaten = data.data.result[0].kota_kab
             const satuanPendidikan = `${data.data.result[0].npsn} - ${data.data.result[0].nama}`
-            const jenjang = data.data.result[0].jenjang.nama_jenjang
 
             this.province = provinsi
             this.kabupaten = kabupaten
             this.satuanPendidikan = satuanPendidikan
-            this.jenjang = jenjang
-
-            console.log(jenjang);
 
           },
           getCountriesData() {
